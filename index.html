@@ -203,6 +203,18 @@
     button.gen { padding: 17px; font-size: 17px; }
     .title-card .t { font-size: 14.5px; }
   }
+
+  /* share card */
+  .share-card { margin-top: 30px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
+  .share-card h3 { font-size: 17px; font-weight: 800; }
+  .share-card .sub { color: var(--text-mute); font-size: 13px; margin: 7px 0 18px; }
+  .share-body { display: flex; align-items: center; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .share-card .qr { width: 132px; height: 132px; border-radius: 12px; border: 1px solid var(--border); }
+  .share-side { text-align: left; }
+  .link-box { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; max-width: 230px; word-break: break-all; margin-bottom: 10px; }
+  .copy-link { background: var(--grad); color: #fff; border: none; border-radius: 9px; padding: 11px 20px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(255,46,99,0.25); transition: transform .12s; }
+  .copy-link:active { transform: scale(0.97); }
+  @media (max-width: 640px){ .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
 </style>
 </head>
 <body>
@@ -272,8 +284,21 @@
     <h3>📚 更多免费工具</h3>
     <a href="topics.html">小红书选题灵感库 <span>→</span></a>
     <a href="index.html">爆款标题生成器（再来一次）<span>→</span></a>
+    <a href="articles/index.html">📖 创作干货文章 <span>→</span></a>
   </div>
 </div>
+
+<div class="share-card">
+    <h3>📲 分享给朋友</h3>
+    <p class="sub">扫码或复制链接，发到微信群 / 朋友圈，朋友一键打开</p>
+    <div class="share-body">
+      <img class="qr" src="baokanpu_qr.png" alt="爆款铺二维码" />
+      <div class="share-side">
+        <div class="link-box" id="linkBox"></div>
+        <button class="copy-link" id="copyLinkBtn">复制链接</button>
+      </div>
+    </div>
+  </div>
 
 <footer>爆款铺 · 创作者的标题灵感库 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
 
@@ -479,6 +504,17 @@ $('copyAllBtn').addEventListener('click', function(){
   const kw = p.get('kw');
   if (kw) { $('kw').value = kw; generate(); }
 })();
+
+const copyLinkBtn = document.getElementById('copyLinkBtn');
+if (copyLinkBtn) {
+  document.getElementById('linkBox').textContent = location.href;
+  copyLinkBtn.addEventListener('click', function(){
+    copyText(location.href);
+    this.textContent = '✓ 已复制';
+    const b = this;
+    setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
+  });
+}
 
 updateFavUI();
 </script>
