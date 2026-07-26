@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>小红书简介怎么写？4类人设模板（2026最新）</title>
+<meta name="description" content="小红书简介怎么写？本文给出专业靠谱/亲切邻家/毒舌真实/文艺治愈4类人设模板，3个加分细节，附免费简介生成器。">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #fbf7f8; --card: #ffffff; --border: #f0e6e9;
+    --text: #1c1b22; --text-dim: #6f6a76; --text-mute: #ab9aa3;
+    --accent: #ff2e63; --accent-2: #ff7a3d;
+    --grad: linear-gradient(135deg, #ff2e63 0%, #ff7a3d 100%);
+    --grad-soft: linear-gradient(135deg, rgba(255,46,99,0.08) 0%, rgba(255,122,61,0.08) 100%);
+    --radius: 18px; --shadow: 0 8px 30px rgba(255,46,99,0.08); --shadow-hover: 0 14px 40px rgba(255,46,99,0.16);
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
+  header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.86); backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--border); }
+  .nav { display: flex; align-items: center; gap: 12px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+  .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 15px; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.3); }
+  .nav-scroll { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex: 1; min-width: 0; padding: 2px 0; }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-scroll a { color: var(--text-dim); text-decoration: none; font-size: 12.5px; padding: 7px 13px; border-radius: 999px; transition: all .2s; white-space: nowrap; border: 1px solid transparent; }
+  .nav-scroll a.cur { color: #fff; background: var(--grad); font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+  .nav-scroll a:not(.cur):hover { background: rgba(255,46,99,0.07); }
+
+  .hero { position: relative; padding: 40px 0 16px; text-align: center; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0; }
+  .hero::before { width: 210px; height: 210px; background: radial-gradient(circle, #ffd0dd, transparent 70%); top: -50px; left: -40px; }
+  .hero::after { width: 230px; height: 230px; background: radial-gradient(circle, #ffe0c7, transparent 70%); top: -30px; right: -60px; }
+  .hero > * { position: relative; z-index: 1; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(255,46,99,0.08); padding: 6px 14px; border-radius: 999px; margin-bottom: 14px; }
+  .hero h1 { font-size: 27px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.3; }
+  .hero h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .meta { color: var(--text-mute); font-size: 13px; margin-top: 10px; }
+
+  .article { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 22px; box-shadow: var(--shadow); margin-top: 16px; }
+  .article h2 { font-size: 20px; font-weight: 800; margin: 26px 0 10px; }
+  .article h3 { font-size: 16px; font-weight: 700; margin: 16px 0 8px; color: var(--accent-2); }
+  .article p { color: var(--text-dim); margin-bottom: 12px; font-size: 15px; }
+  .article ul, .article ol { margin: 0 0 12px 20px; color: var(--text-dim); font-size: 15px; }
+  .article li { margin-bottom: 6px; }
+  .article .lead { font-size: 15.5px; color: var(--text); font-weight: 500; }
+  .article .tip { background: rgba(255,46,99,0.05); border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 0 8px 8px 0; margin: 14px 0; font-size: 14px; color: var(--text-dim); }
+  .article code { background: #fdfafb; border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; font-size: 13.5px; color: var(--accent); }
+  .article .card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+  .article .mini { background: var(--grad-soft); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .article .mini b { color: var(--accent); font-size: 14px; }
+  .article .mini p { font-size: 13px; margin: 6px 0 0; }
+
+  .cta-box { margin-top: 24px; background: rgba(255,46,99,0.06); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+  .cta-box .t { font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+  .cta-box .s { color: var(--text-dim); font-size: 13.5px; margin-bottom: 14px; }
+  .cta-box a { display: inline-block; margin: 5px; padding: 11px 18px; background: var(--grad); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+
+  .more { margin-top: 28px; }
+  .more h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+  .more a { display: flex; align-items: center; justify-content: space-between; padding: 15px 17px; margin-bottom: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; color: var(--text); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: all .18s; }
+  .more a span { color: var(--accent-2); font-weight: 700; transition: transform .18s; }
+  .more a:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
+  .more a:hover span { transform: translateX(4px); }
+
+  .share-card { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
+  .share-card h3 { font-size: 17px; font-weight: 800; }
+  .share-card .sub { color: var(--text-mute); font-size: 13px; margin: 7px 0 18px; }
+  .share-body { display: flex; align-items: center; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .share-card .qr { width: 132px; height: 132px; border-radius: 12px; border: 1px solid var(--border); }
+  .share-side { text-align: left; }
+  .link-box { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; max-width: 230px; word-break: break-all; margin-bottom: 10px; }
+  .copy-link { background: var(--grad); color: #fff; border: none; border-radius: 9px; padding: 11px 20px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(255,46,99,0.25); transition: transform .12s; }
+  .copy-link:active { transform: scale(0.97); }
+
+  footer { margin-top: 40px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
+  footer .heart { color: var(--accent); }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px; font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  @media (max-width: 640px){ .hero h1 { font-size: 24px; } .article .card-row { grid-template-columns: 1fr; } .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><div class="dot">爆</div>爆款铺</div>
+    <nav class="nav-scroll">
+      <a href="../index.html">标题</a>
+      <a href="../topics.html">选题</a>
+      <a href="../script.html">脚本</a>
+      <a href="../cover.html">封面</a>
+      <a href="../copywriter.html">文案</a>
+      <a href="../hashtag.html">标签</a>
+      <a href="../bio.html">简介</a>
+      <a href="index.html" class="cur">文章</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="badge">🪪 账号包装</span>
+    <h1>小红书<span class="g">简介怎么写</span>？4类人设模板</h1>
+    <div class="meta">阅读约 4 分钟 · 一句话立住账号调性</div>
+  </section>
+
+  <article class="article">
+    <p class="lead">用户刷到你，先看封面标题，点进主页，第二眼就是简介。简介写得好，关注转化率能差好几倍。它不用长，但必须让人「一眼知道你是谁、为什么关注你」。</p>
+
+    <h2>一、好简介的「三要素」</h2>
+    <div class="card-row">
+      <div class="mini"><b>你是谁</b><p>身份 / 领域，一句话说清定位，比如「5年护肤配方师」。</p></div>
+      <div class="mini"><b>你能给什么</b><p>关注你能得到什么价值，比如「只讲看得懂的成分」。</p></div>
+      <div class="mini"><b>一句口号</b><p>记忆点，比如「不交智商税」。</p></div>
+      <div class="mini"><b>标签收尾</b><p>用 2-3 个标签点明赛道，方便检索和归类。</p></div>
+    </div>
+
+    <h2>二、4类人设模板（直接套）</h2>
+    <h3>1. 专业靠谱型</h3>
+    <p>适合知识、测评、行业号。结构：<code>身份+成绩 / 你提供什么 / 口号</code>。例：「十年室内设计师｜帮 1000+ 人搞定小家｜少花钱住得舒服」。</p>
+    <h3>2. 亲切邻家型</h3>
+    <p>适合日常、母婴、生活号。结构：<code>真实身份+日常+陪伴感</code>。例：「96年沪漂打工人｜下班做饭治愈自己｜一起慢慢变好」。</p>
+    <h3>3. 毒舌真实型</h3>
+    <p>适合避坑、吐槽、测评号。结构：<code>犀利观点+帮避坑</code>。例：「专拆网红智商税｜买错的比买对的还多｜关注少踩坑」。</p>
+    <h3>4. 文艺治愈型</h3>
+    <p>适合摄影、手作、独居号。结构：<code>氛围+价值观</code>。例：「记录普通日子里的光｜慢一点也没关系｜谢谢你来看」。</p>
+
+    <h2>三、3个加分细节</h2>
+    <ol>
+      <li><b>用 emoji 分段</b>：每行一个图标（🔹✨📮），手机上更清爽，不挤成一团；</li>
+      <li><b>留一句金句口号</b>：让人记住你，比罗列成就更管用；</li>
+      <li><b>结尾加话题标签</b>：如 <code>#护肤</code> <code>#成分党</code>，强化赛道标签。</li>
+    </ol>
+
+    <div class="tip">简介不是简历。别写「热爱生活、积极向上」这种谁都适用的空话——越具体、越像「一个人说的话」，越可信。</div>
+
+    <h2>四、新手常犯的 3 个错</h2>
+    <ul>
+      <li>太长像小作文：手机上翻三屏都看不完，直接划走；</li>
+      <li>空洞没特色：和别人撞脸，记不住你；</li>
+      <li>写了不更新：赛道转型了简介还停留在半年前，前后不一致掉信任。</li>
+    </ul>
+
+    <div class="cta-box">
+      <div class="t">不知道选哪种人设？工具替你想</div>
+      <div class="s">选人设风格输入领域，简介+口号+标签一键生成</div>
+      <a href="../bio.html">去用简介生成器</a>
+      <a href="../hashtag.html">配套打标签</a>
+    </div>
+  </article>
+
+  <div class="more">
+    <h3>🧰 全部免费工具</h3>
+    <a href="../index.html">小红书爆款标题生成器 <span>→</span></a>
+    <a href="../topics.html">选题灵感库 <span>→</span></a>
+    <a href="../script.html">视频脚本生成器 <span>→</span></a>
+    <a href="../cover.html">封面文案生成器 <span>→</span></a>
+    <a href="../copywriter.html">正文文案生成器 <span>→</span></a>
+    <a href="../hashtag.html">话题标签生成器 <span>→</span></a>
+  </div>
+
+  <div class="share-card">
+    <h3>📲 分享给朋友</h3>
+    <p class="sub">扫码或复制链接，发到微信群 / 朋友圈，朋友一键打开</p>
+    <div class="share-body">
+      <img class="qr" src="../baokanpu_qr.png" alt="爆款铺二维码" />
+      <div class="share-side">
+        <div class="link-box" id="linkBox"></div>
+        <button class="copy-link" id="copyLinkBtn">复制链接</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>爆款铺 · 创作者的免费工具站 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
+<div class="toast" id="toast">已复制</div>
+
+<script>
+function copyText(text){ if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(()=>toast('已复制')).catch(()=>fb(text)); } else fb(text); }
+function fb(text){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.top='-9999px'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{ document.execCommand('copy'); toast('已复制'); }catch(e){ toast('请长按手动复制'); } document.body.removeChild(ta); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); }
+const copyLinkBtn = document.getElementById('copyLinkBtn');
+if (copyLinkBtn) {
+  document.getElementById('linkBox').textContent = location.href;
+  copyLinkBtn.addEventListener('click', function(){
+    copyText(location.href);
+    this.textContent = '✓ 已复制';
+    const b = this;
+    setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
+  });
+}
+</script>
+</body>
+</html>
