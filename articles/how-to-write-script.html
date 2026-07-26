@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>小红书视频脚本怎么写？5种类型模板直接套</title>
+<meta name="description" content="小红书视频脚本怎么写？本文给出口播/教程/种草/测评/Vlog五种类型脚本结构，含前3秒钩子写法，并附脚本生成器。">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{--bg:#fbf7f8;--card:#fff;--border:#f0e6e9;--text:#1c1b22;--text-dim:#6f6a76;--text-mute:#ab9aa3;--accent:#ff2e63;--accent-2:#ff7a3d;--grad:linear-gradient(135deg,#ff2e63,#ff7a3d);--radius:18px;--shadow:0 8px 30px rgba(255,46,99,.08)}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;overflow-x:hidden}
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px}
+  header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
+  .logo .dot{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-size:15px;color:#fff;box-shadow:0 4px 12px rgba(255,46,99,.3)}
+  .nav-tabs{display:flex;gap:4px}
+  .nav-tabs a{color:var(--text-dim);text-decoration:none;font-size:12px;padding:6px 10px;border-radius:999px;transition:all .2s;white-space:nowrap}
+  .nav-tabs a.cur{color:#fff;background:var(--grad);font-weight:600;box-shadow:0 4px 12px rgba(255,46,99,.25)}
+  @media(max-width:640px){.nav-tabs a:not(.cur){display:none}.nav-tabs a.cur{display:inline-block}}
+  .hero{padding:40px 0 18px;text-align:center}
+  .hero .tag{display:inline-block;font-size:12px;font-weight:600;color:var(--accent);background:rgba(255,46,99,.08);padding:5px 13px;border-radius:999px;margin-bottom:12px}
+  .hero h1{font-size:27px;font-weight:900;letter-spacing:-.5px;line-height:1.3}
+  .hero .meta{color:var(--text-mute);font-size:13px;margin-top:10px}
+  .article{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow);margin-top:18px}
+  .article h2{font-size:20px;font-weight:800;margin:24px 0 10px}
+  .article h3{font-size:16px;font-weight:700;margin:16px 0 8px;color:var(--accent-2)}
+  .article p{color:var(--text-dim);margin-bottom:12px;font-size:15px}
+  .article ul,.article ol{margin:0 0 12px 20px;color:var(--text-dim);font-size:15px}
+  .article li{margin-bottom:6px}
+  .article .lead{font-size:15.5px;color:var(--text);font-weight:500}
+  .article .tip{background:rgba(255,46,99,.05);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px;color:var(--text-dim)}
+  .article code{background:#fdfafb;border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-size:13.5px;color:var(--accent)}
+  .cta-box{margin-top:24px;background:rgba(255,46,99,.06);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+  .cta-box .t{font-weight:800;font-size:16px;margin-bottom:6px}
+  .cta-box .s{color:var(--text-dim);font-size:13.5px;margin-bottom:14px}
+  .cta-box a{display:inline-block;margin:5px;padding:11px 18px;background:var(--grad);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;box-shadow:0 4px 12px rgba(255,46,99,.25)}
+  footer{margin-top:40px;padding:26px 0 38px;color:var(--text-mute);font-size:12px;text-align:center}
+  footer .heart{color:var(--accent)}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="logo"><div class="dot">爆</div>爆款铺</div>
+  <div class="nav-tabs">
+    <a href="../index.html">标题</a><a href="../topics.html">选题</a>
+    <a href="../script.html">脚本</a><a href="../cover.html">封面</a>
+    <a href="how-to-write-script.html" class="cur">文章</a>
+  </div>
+</div></header>
+<div class="wrap">
+  <section class="hero">
+    <span class="tag">脚本写作</span>
+    <h1>小红书视频脚本怎么写？5种类型模板</h1>
+    <div class="meta">阅读约 6 分钟 · 拍视频前先看这篇</div>
+  </section>
+  <article class="article">
+    <p class="lead">视频火不火，脚本占一半。好脚本不是文采，是结构：开头 3 秒留人、中间给价值、结尾引导互动。下面按类型给你可直接套的结构。</p>
+
+    <h2>一、所有类型的共同地基：前3秒钩子</h2>
+    <p>用户划走只需要 0.3 秒。前 3 秒必须抛出一个「和我有关」或「反常识」的点。常用钩子：</p>
+    <ul>
+      <li><code>别划走！{kw}这件事我后悔没早知道</code></li>
+      <li><code>谁懂啊，{kw}居然还能这样</code></li>
+      <li><code>{kw}到底值不值？实测给你看</code></li>
+    </ul>
+
+    <h2>二、五种类型脚本结构</h2>
+    <h3>口播类</h3>
+    <ol><li>反常识观点戳痛点</li><li>抛真相引发好奇</li><li>核心方法分 1/2/3 步</li><li>金句收尾</li><li>引导评论互动</li></ol>
+    <h3>教程类</h3>
+    <ol><li>结果前置（你能收获什么）</li><li>准备清单</li><li>逐步演示</li><li>易错点提醒</li><li>成果展示+行动号召</li></ol>
+    <h3>种草类</h3>
+    <ol><li>场景痛点</li><li>产品出现制造惊艳</li><li>真实体验三连</li><li>适合/不适合谁</li><li>下单引导</li></ol>
+    <h3>测评类</h3>
+    <ol><li>开宗明义测什么</li><li>参数过一遍</li><li>维度打分</li><li>一周真实反馈</li><li>推荐 or 劝退</li></ol>
+    <h3>Vlog类</h3>
+    <ol><li>氛围定调开场</li><li>日常快剪+字幕</li><li>小转折/小确幸</li><li>感悟升华</li><li>温柔收尾</li></ol>
+
+    <div class="tip">脚本不用写逐字稿，把「钩子 + 分镜要点 + 结尾引导」列清楚就够拍了。越细越容易卡，先动起来。</div>
+
+    <h2>三、写完做一件事：念一遍</h2>
+    <p>把脚本大声念出来，哪里拗口就在哪里改。口语化比书面语完播率高得多。</p>
+
+    <div class="cta-box">
+      <div class="t">不想列分镜？工具自动生成</div>
+      <div class="s">选类型输入主题，钩子+分镜+口播文案一次出</div>
+      <a href="../script.html">去用脚本生成器</a>
+      <a href="../cover.html">顺便做封面文案</a>
+    </div>
+  </article>
+</div>
+<footer>爆款铺 · 创作者的灵感工具箱 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
+</body>
+</html>
