@@ -57,12 +57,6 @@
   .cta-box .s { color: var(--text-dim); font-size: 13.5px; margin-bottom: 14px; }
   .cta-box a { display: inline-block; margin: 5px; padding: 11px 18px; background: var(--grad); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
 
-  .more { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
-  .more h3 { width: 100%; font-size: 15px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
-  .more a { display: inline-flex; align-items: center; gap: 4px; padding: 9px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; color: var(--text); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: all .18s; }
-  .more a span { display: none; }
-  .more a:hover { border-color: var(--accent); background: rgba(255,46,99,0.05); box-shadow: var(--shadow-hover); }
-  .more a:hover span { transform: none; }
 
   .share-card { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
   .share-card h3 { font-size: 17px; font-weight: 800; }
@@ -79,6 +73,15 @@
   .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px; font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   @media (max-width: 640px){ .hero h1 { font-size: 24px; } .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
+  .next { margin-top: 30px; }
+  .next h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+  .next-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; text-decoration: none; color: var(--text); margin-bottom: 9px; transition: all .18s; }
+  .next-item:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+  .next-ico { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; flex-shrink: 0; }
+  .next-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .next-txt b { font-size: 14px; font-weight: 700; }
+  .next-txt i { font-style: normal; font-size: 12.5px; color: var(--text-dim); }
+  .next-go { color: var(--text-mute); font-size: 16px; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -156,14 +159,11 @@
     </div>
   </article>
 
-  <div class="more">
-    <h3>🧰 全部免费工具</h3>
-    <a href="../index.html">小红书爆款标题生成器 <span>→</span></a>
-    <a href="../topics.html">选题灵感库 <span>→</span></a>
-    <a href="../script.html">视频脚本生成器 <span>→</span></a>
-    <a href="../cover.html">封面文案生成器 <span>→</span></a>
-    <a href="../copywriter.html">正文文案生成器 <span>→</span></a>
-    <a href="../bio.html">账号简介生成器 <span>→</span></a>
+  <div class="next">
+    <h3>🔧 学完就用</h3>
+    <a class="next-item" href="../hashtag.html"><span class="next-ico" style="background:#ffe3ec;color:#ff2e63">#</span><span class="next-txt"><b>话题标签生成器</b><i>学完即用：3组标签直接复制</i></span><span class="next-go">→</span></a>
+    <a class="next-item" href="how-to-grow-followers.html"><span class="next-ico" style="background:#ffe3ec;color:#ff2e63">干</span><span class="next-txt"><b>从0到1000粉实操攻略</b><i>标签只是杠杆，涨粉看全局</i></span><span class="next-go">→</span></a>
+    <a class="next-item" href="how-to-make-cover.html"><span class="next-ico" style="background:#ffe9dd;color:#e85f1e">干</span><span class="next-txt"><b>封面怎么做点击率才高</b><i>流量进来了，封面接得住吗</i></span><span class="next-go">→</span></a>
   </div>
 
   <div class="share-card">
