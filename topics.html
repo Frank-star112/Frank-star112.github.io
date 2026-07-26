@@ -8,30 +8,60 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   :root {
-    --bg: #f4f5f7; --card: #ffffff; --border: #e7e9ee;
-    --text: #1f2230; --text-dim: #707686; --text-mute: #a3a8b5;
-    --accent: #ff2e63; --accent-2: #ff6b35;
-    --grad: linear-gradient(135deg, #ff2e63 0%, #ff6b35 100%);
+    --bg: #fbf7f8; --card: #ffffff; --border: #f0e6e9;
+    --text: #1c1b22; --text-dim: #6f6a76; --text-mute: #ab9aa3;
+    --accent: #ff2e63; --accent-2: #ff7a3d;
+    --grad: linear-gradient(135deg, #ff2e63 0%, #ff7a3d 100%);
+    --radius: 18px; --shadow: 0 8px 30px rgba(255,46,99,0.08);
+    --shadow-hover: 0 14px 40px rgba(255,46,99,0.16);
   }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
-  header { border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 18px; }
-  .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--grad); display: grid; place-items: center; font-size: 14px; color: #fff; }
-  .nav-tabs a { color: var(--text-dim); text-decoration: none; font-size: 13px; margin-left: 14px; }
-  .nav-tabs a.cur { color: var(--accent); font-weight: 600; }
-  .hero { padding: 30px 0 14px; text-align: center; }
-  .hero h1 { font-size: 25px; font-weight: 800; }
-  .hero p { color: var(--text-dim); margin-top: 8px; font-size: 14px; }
-  .cat { margin-top: 18px; }
-  .cat h2 { font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .cat h2 .pin { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; min-height: 100vh; overflow-x: hidden; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
+
+  header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.82); backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--border); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; }
+  .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 15px; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.3); }
+  .nav-tabs { display: flex; gap: 6px; }
+  .nav-tabs a { color: var(--text-dim); text-decoration: none; font-size: 13px; padding: 7px 13px; border-radius: 999px; transition: all .2s; }
+  .nav-tabs a.cur { color: #fff; background: var(--grad); font-weight: 600; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+  @media (max-width: 640px){ .nav-tabs a:not(.cur) { display: none; } .nav-tabs a.cur { display: inline-block; } }
+
+  .hero { position: relative; padding: 46px 0 22px; text-align: center; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0; }
+  .hero::before { width: 230px; height: 230px; background: radial-gradient(circle, #ffd0dd, transparent 70%); top: -50px; left: -40px; }
+  .hero::after { width: 250px; height: 250px; background: radial-gradient(circle, #ffe0c7, transparent 70%); top: -30px; right: -60px; }
+  .hero > * { position: relative; z-index: 1; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(255,46,99,0.08); padding: 6px 14px; border-radius: 999px; margin-bottom: 14px; }
+  .hero h1 { font-size: 28px; font-weight: 900; letter-spacing: -0.6px; line-height: 1.25; }
+  .hero p { color: var(--text-dim); margin: 12px auto 0; font-size: 14.5px; max-width: 440px; }
+
+  .search { position: relative; margin-top: 20px; z-index: 1; }
+  .search input { width: 100%; -webkit-appearance: none; background: #fff; border: 1.5px solid var(--border); border-radius: 13px; padding: 14px 16px 14px 44px; font-size: 15px; outline: none; color: var(--text); transition: border-color .2s, box-shadow .2s; box-shadow: var(--shadow); }
+  .search input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255,46,99,0.1); }
+  .search .mag { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 17px; color: var(--text-mute); }
+
+  .cat { margin-top: 22px; }
+  .cat-head { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+  .cat-head .pin { width: 30px; height: 30px; border-radius: 9px; background: var(--grad-soft, rgba(255,46,99,0.08)); display: grid; place-items: center; font-size: 16px; border: 1px solid var(--border); }
+  .cat-head h2 { font-size: 16.5px; font-weight: 800; }
   .list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   @media (max-width: 640px){ .list { grid-template-columns: 1fr; } }
-  .item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 13px 14px; font-size: 14px; color: var(--text); text-decoration: none; display: block; cursor: pointer; }
-  .item:hover { border-color: var(--accent); background: #fff7f9; }
-  footer { margin-top: 40px; border-top: 1px solid var(--border); padding: 22px 0; color: var(--text-mute); font-size: 12px; text-align: center; }
+  .item {
+    background: var(--card); border: 1px solid var(--border); border-radius: 13px; padding: 14px 15px;
+    font-size: 14.5px; color: var(--text); text-decoration: none; display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; transition: transform .16s, box-shadow .16s, border-color .16s; font-weight: 500;
+    animation: fade .4s ease backwards;
+  }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .item:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .item .arrow { color: var(--accent-2); font-weight: 700; opacity: 0; transform: translateX(-4px); transition: all .18s; }
+  .item:hover .arrow { opacity: 1; transform: translateX(0); }
+  .item.hide { display: none; }
+
+  footer { margin-top: 44px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
+  footer .heart { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -47,41 +77,57 @@
 
 <div class="wrap">
   <section class="hero">
+    <span class="badge">🧭 不知道写啥？来这找灵感</span>
     <h1>小红书选题灵感库</h1>
-    <p>8 大赛道，点任意选题直接生成爆款标题 👇</p>
+    <p>8 大赛道 · 80+ 爆款方向，点任意选题直接生成标题 👇</p>
+    <div class="search">
+      <span class="mag">🔍</span>
+      <input id="searchInput" placeholder="搜索选题，如：减脂 / 通勤 / 副业…" />
+    </div>
   </section>
   <div id="cats"></div>
 </div>
 
-<footer>爆款铺 · 创作者的标题灵感库 · 免费工具，由阿坎打造</footer>
+<footer>爆款铺 · 创作者的标题灵感库 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
 
 <script>
 const data = {
-  "美妆护肤": ["新手化妆","油皮护肤","平价彩妆","学生党妆容","敏感肌","伪素颜","早C晚A","防晒","口红试色","底妆不卡粉"],
-  "减脂健身": ["减脂早餐","居家健身","暴汗操","掉秤食谱","腹肌训练","跳绳","轻断食","低卡零食","跑步姿势","体态矫正"],
-  "穿搭时尚": ["小个子穿搭","通勤穿搭","显瘦穿搭","秋冬叠穿","平价衣柜","梨形身材","男友风","配色公式","淘宝神店","旧衣改造"],
-  "美食探店": ["一人食","空气炸锅","快手菜","减脂餐","早餐灵感","咖啡探店","宝藏小店","下午茶","便当","汤羹"],
-  "家居收纳": ["出租屋改造","小户型收纳","桌面好物","懒人神器","断舍离","厨房收纳","平价软装","灯光氛围","绿植","清洁妙招"],
-  "职场成长": ["简历模板","面试话术","副业搞钱","Excel技巧","PPT模板","时间管理","汇报模板","职场穿搭","沟通技巧","升职加薪"],
-  "母婴育儿": ["宝宝辅食","早教游戏","待产包","哄睡技巧","绘本推荐","育儿好物","产后恢复","亲子穿搭","幼儿园准备","感统训练"],
-  "情感生活": ["亲密关系","独居生活","脱单技巧","情绪价值","异地恋","自我成长","断联","仪式感","边界感","治愈文案"]
+  "💄 美妆护肤": ["新手化妆","油皮护肤","平价彩妆","学生党妆容","敏感肌","伪素颜","早C晚A","防晒","口红试色","底妆不卡粉"],
+  "🏃 减脂健身": ["减脂早餐","居家健身","暴汗操","掉秤食谱","腹肌训练","跳绳","轻断食","低卡零食","跑步姿势","体态矫正"],
+  "👗 穿搭时尚": ["小个子穿搭","通勤穿搭","显瘦穿搭","秋冬叠穿","平价衣柜","梨形身材","男友风","配色公式","淘宝神店","旧衣改造"],
+  "🍜 美食探店": ["一人食","空气炸锅","快手菜","减脂餐","早餐灵感","咖啡探店","宝藏小店","下午茶","便当","汤羹"],
+  "🏠 家居收纳": ["出租屋改造","小户型收纳","桌面好物","懒人神器","断舍离","厨房收纳","平价软装","灯光氛围","绿植","清洁妙招"],
+  "💼 职场成长": ["简历模板","面试话术","副业搞钱","Excel技巧","PPT模板","时间管理","汇报模板","职场穿搭","沟通技巧","升职加薪"],
+  "👶 母婴育儿": ["宝宝辅食","早教游戏","待产包","哄睡技巧","绘本推荐","育儿好物","产后恢复","亲子穿搭","幼儿园准备","感统训练"],
+  "💗 情感生活": ["亲密关系","独居生活","脱单技巧","情绪价值","异地恋","自我成长","断联","仪式感","边界感","治愈文案"]
 };
 const wrap = document.getElementById('cats');
-Object.keys(data).forEach(cat => {
+const items = [];
+Object.keys(data).forEach((cat, ci) => {
   const box = document.createElement('div');
   box.className = 'cat';
-  box.innerHTML = '<h2><span class="pin"></span>' + cat + '</h2>';
+  box.innerHTML = '<div class="cat-head"><span class="pin">'+cat.split(' ')[0]+'</span><h2>'+cat.split(' ').slice(1).join(' ')+'</h2></div>';
   const list = document.createElement('div');
   list.className = 'list';
-  data[cat].forEach(t => {
+  data[cat].forEach((t, ti) => {
     const a = document.createElement('a');
     a.className = 'item';
     a.href = 'index.html?kw=' + encodeURIComponent(t);
-    a.textContent = t;
+    a.style.animationDelay = ((ci*0.04)+(ti*0.012)) + 's';
+    a.innerHTML = '<span>'+t+'</span><span class="arrow">→</span>';
     list.appendChild(a);
+    items.push({ el: a, text: t });
   });
   box.appendChild(list);
   wrap.appendChild(box);
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  const q = e.target.value.trim().toLowerCase();
+  items.forEach(it => {
+    const hit = !q || it.text.toLowerCase().includes(q);
+    it.el.classList.toggle('hide', !hit);
+  });
 });
 </script>
 </body>
