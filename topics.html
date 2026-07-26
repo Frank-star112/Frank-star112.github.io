@@ -61,6 +61,12 @@
   .item.hide { display: none; }
 
   footer { margin-top: 44px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
+  .more { margin-top: 30px; }
+  .more h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+  .more a { display: flex; align-items: center; justify-content: space-between; padding: 15px 17px; margin-bottom: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; color: var(--text); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: all .18s; }
+  .more a span { color: var(--accent-2); font-weight: 700; transition: transform .18s; }
+  .more a:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
+  .more a:hover span { transform: translateX(4px); }
   footer .heart { color: var(--accent); }
 </style>
 </head>
@@ -86,6 +92,14 @@
     </div>
   </section>
   <div id="cats"></div>
+
+  <div class="more">
+    <h3>📚 更多免费工具</h3>
+    <a href="index.html">小红书爆款标题生成器 <span>→</span></a>
+    <a href="script.html">视频脚本生成器 <span>→</span></a>
+    <a href="cover.html">封面文案生成器 <span>→</span></a>
+    <a href="articles/index.html">📖 创作干货文章 <span>→</span></a>
+  </div>
 </div>
 
 <footer>爆款铺 · 创作者的标题灵感库 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
