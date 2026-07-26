@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>小红书标签怎么打？5招蹭满流量（2026最新）</title>
+<meta name="description" content="小红书标签怎么打？本文讲清大流量词、中长尾词、自造词怎么搭配，5个实操招数让笔记曝光翻倍，附免费标签生成器。">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #fbf7f8; --card: #ffffff; --border: #f0e6e9;
+    --text: #1c1b22; --text-dim: #6f6a76; --text-mute: #ab9aa3;
+    --accent: #ff2e63; --accent-2: #ff7a3d;
+    --grad: linear-gradient(135deg, #ff2e63 0%, #ff7a3d 100%);
+    --grad-soft: linear-gradient(135deg, rgba(255,46,99,0.08) 0%, rgba(255,122,61,0.08) 100%);
+    --radius: 18px; --shadow: 0 8px 30px rgba(255,46,99,0.08); --shadow-hover: 0 14px 40px rgba(255,46,99,0.16);
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
+  header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.86); backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--border); }
+  .nav { display: flex; align-items: center; gap: 12px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+  .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 15px; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.3); }
+  .nav-scroll { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex: 1; min-width: 0; padding: 2px 0; }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-scroll a { color: var(--text-dim); text-decoration: none; font-size: 12.5px; padding: 7px 13px; border-radius: 999px; transition: all .2s; white-space: nowrap; border: 1px solid transparent; }
+  .nav-scroll a.cur { color: #fff; background: var(--grad); font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+  .nav-scroll a:not(.cur):hover { background: rgba(255,46,99,0.07); }
+
+  .hero { position: relative; padding: 40px 0 16px; text-align: center; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0; }
+  .hero::before { width: 210px; height: 210px; background: radial-gradient(circle, #ffd0dd, transparent 70%); top: -50px; left: -40px; }
+  .hero::after { width: 230px; height: 230px; background: radial-gradient(circle, #ffe0c7, transparent 70%); top: -30px; right: -60px; }
+  .hero > * { position: relative; z-index: 1; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(255,46,99,0.08); padding: 6px 14px; border-radius: 999px; margin-bottom: 14px; }
+  .hero h1 { font-size: 27px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.3; }
+  .hero h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .meta { color: var(--text-mute); font-size: 13px; margin-top: 10px; }
+
+  .article { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 22px; box-shadow: var(--shadow); margin-top: 16px; }
+  .article h2 { font-size: 20px; font-weight: 800; margin: 26px 0 10px; }
+  .article h3 { font-size: 16px; font-weight: 700; margin: 16px 0 8px; color: var(--accent-2); }
+  .article p { color: var(--text-dim); margin-bottom: 12px; font-size: 15px; }
+  .article ul, .article ol { margin: 0 0 12px 20px; color: var(--text-dim); font-size: 15px; }
+  .article li { margin-bottom: 6px; }
+  .article .lead { font-size: 15.5px; color: var(--text); font-weight: 500; }
+  .article .tip { background: rgba(255,46,99,0.05); border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 0 8px 8px 0; margin: 14px 0; font-size: 14px; color: var(--text-dim); }
+  .article code { background: #fdfafb; border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; font-size: 13.5px; color: var(--accent); }
+  .article .stat { display: flex; gap: 12px; margin: 14px 0; flex-wrap: wrap; }
+  .article .stat .s { flex: 1; min-width: 140px; background: var(--grad-soft); border-radius: 12px; padding: 14px; text-align: center; }
+  .article .stat .s b { font-size: 22px; color: var(--accent); display: block; }
+  .article .stat .s span { font-size: 12.5px; color: var(--text-dim); }
+
+  .cta-box { margin-top: 24px; background: rgba(255,46,99,0.06); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+  .cta-box .t { font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+  .cta-box .s { color: var(--text-dim); font-size: 13.5px; margin-bottom: 14px; }
+  .cta-box a { display: inline-block; margin: 5px; padding: 11px 18px; background: var(--grad); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+
+  .more { margin-top: 28px; }
+  .more h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+  .more a { display: flex; align-items: center; justify-content: space-between; padding: 15px 17px; margin-bottom: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; color: var(--text); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: all .18s; }
+  .more a span { color: var(--accent-2); font-weight: 700; transition: transform .18s; }
+  .more a:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
+  .more a:hover span { transform: translateX(4px); }
+
+  .share-card { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
+  .share-card h3 { font-size: 17px; font-weight: 800; }
+  .share-card .sub { color: var(--text-mute); font-size: 13px; margin: 7px 0 18px; }
+  .share-body { display: flex; align-items: center; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .share-card .qr { width: 132px; height: 132px; border-radius: 12px; border: 1px solid var(--border); }
+  .share-side { text-align: left; }
+  .link-box { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; max-width: 230px; word-break: break-all; margin-bottom: 10px; }
+  .copy-link { background: var(--grad); color: #fff; border: none; border-radius: 9px; padding: 11px 20px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(255,46,99,0.25); transition: transform .12s; }
+  .copy-link:active { transform: scale(0.97); }
+
+  footer { margin-top: 40px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
+  footer .heart { color: var(--accent); }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px; font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  @media (max-width: 640px){ .hero h1 { font-size: 24px; } .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><div class="dot">爆</div>爆款铺</div>
+    <nav class="nav-scroll">
+      <a href="../index.html">标题</a>
+      <a href="../topics.html">选题</a>
+      <a href="../script.html">脚本</a>
+      <a href="../cover.html">封面</a>
+      <a href="../copywriter.html">文案</a>
+      <a href="../hashtag.html">标签</a>
+      <a href="../bio.html">简介</a>
+      <a href="index.html" class="cur">文章</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="badge">#️⃣ 标签技巧</span>
+    <h1>小红书<span class="g">标签怎么打</span>？5招蹭满流量</h1>
+    <div class="meta">阅读约 5 分钟 · 2026 最新实操版</div>
+  </section>
+
+  <article class="article">
+    <p class="lead">很多人花半小时写笔记，却随手堆几个标签就发了。其实标签是小红书里最便宜的流量入口——不打对，等于把笔记白白藏起来。这篇把标签玩法讲透。</p>
+
+    <div class="stat">
+      <div class="s"><b>3 类</b><span>标签组合逻辑</span></div>
+      <div class="s"><b>6-10 个</b><span>一条笔记最佳数量</span></div>
+      <div class="s"><b>30%</b><span>搜索流量占比（长尾）</span></div>
+    </div>
+
+    <h2>一、标签到底有什么用</h2>
+    <p>标签不只装饰，它同时干三件事：</p>
+    <ul>
+      <li><b>吃搜索流量</b>：用户搜「减脂早餐」时，打了这个标签的笔记才会被检索到，且是长尾流量，能持续带来曝光几个月；</li>
+      <li><b>帮算法归类</b>：标签告诉系统你的内容属于哪个赛道，决定推给谁；</li>
+      <li><b>蹭热点曝光</b>：实时热点标签（如某个综艺、某个季节话题）会进入聚合页，白捡一波流量。</li>
+    </ul>
+
+    <h2>二、三类标签怎么搭</h2>
+    <h3>1. 大流量词（主题词必打）</h3>
+    <p><code>#减脂早餐</code> <code>#减脂早餐推荐</code> <code>#减脂早餐攻略</code>——直接含你的核心主题，曝光最广，一定要放最前面。</p>
+    <h3>2. 中长尾词（精准触达）</h3>
+    <p>按赛道选 2-3 个，比如减脂赛道里的 <code>#掉秤</code> <code>#低卡</code> <code>#空气炸锅</code>，触达更精准的目标人群，竞争也更小。</p>
+    <h3>3. 自造词（独占流量）</h3>
+    <p><code>#我的减脂早餐日记</code> <code>#减脂早餐打卡</code>——别人没打的词，搜出来只有你，慢慢攒成你的专属话题和私域。</p>
+
+    <h2>三、5个实操招数</h2>
+    <ol>
+      <li><b>主题词必打且放最前</b>：让算法和人都第一眼看懂你在讲什么；</li>
+      <li><b>大词保底 + 小词精准</b>：一条笔记打 6-10 个，4-6 个大流量词 + 2-3 个中长尾 + 1-2 个自造词，兼顾广度和精准；</li>
+      <li><b>蹭实时热点标签</b>：季节、节日、当下综艺剧集相关的话题，进聚合页白捡流量；</li>
+      <li><b>建自己的专属话题</b>：固定用一个自造标签（如 <code>#XX的减脂日记</code>），每篇都带，攒成你的内容合集；</li>
+      <li><b>别乱堆无关标签</b>：为了流量打「搞笑」「萌宠」却不相关内容，算法判定不精准，反而推不动。</li>
+    </ol>
+
+    <div class="tip">一个常见误区：标签打满 20 个越多越好。其实标签越杂，算法越不知道推给谁。少而准，远胜多而乱。</div>
+
+    <h2>四、新手常犯的 3 个错</h2>
+    <ul>
+      <li>漏了主题词，只打了泛泛的「日常分享」，搜索完全捞不到你；</li>
+      <li>每次都换一套标签，没有固定专属话题，没法攒私域；</li>
+      <li>标题写减脂、标签打美妆，内容错位，权重和完播一起掉。</li>
+    </ul>
+
+    <div class="cta-box">
+      <div class="t">不想手动凑标签？工具一键生成组合</div>
+      <div class="s">输入主题选赛道，大流量词+中长尾+自造词一次出齐，直接复制</div>
+      <a href="../hashtag.html">去用标签生成器</a>
+      <a href="../index.html">配套写标题</a>
+    </div>
+  </article>
+
+  <div class="more">
+    <h3>🧰 全部免费工具</h3>
+    <a href="../index.html">小红书爆款标题生成器 <span>→</span></a>
+    <a href="../topics.html">选题灵感库 <span>→</span></a>
+    <a href="../script.html">视频脚本生成器 <span>→</span></a>
+    <a href="../cover.html">封面文案生成器 <span>→</span></a>
+    <a href="../copywriter.html">正文文案生成器 <span>→</span></a>
+    <a href="../bio.html">账号简介生成器 <span>→</span></a>
+  </div>
+
+  <div class="share-card">
+    <h3>📲 分享给朋友</h3>
+    <p class="sub">扫码或复制链接，发到微信群 / 朋友圈，朋友一键打开</p>
+    <div class="share-body">
+      <img class="qr" src="../baokanpu_qr.png" alt="爆款铺二维码" />
+      <div class="share-side">
+        <div class="link-box" id="linkBox"></div>
+        <button class="copy-link" id="copyLinkBtn">复制链接</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>爆款铺 · 创作者的免费工具站 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
+<div class="toast" id="toast">已复制</div>
+
+<script>
+function copyText(text){ if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(()=>toast('已复制')).catch(()=>fb(text)); } else fb(text); }
+function fb(text){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.top='-9999px'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{ document.execCommand('copy'); toast('已复制'); }catch(e){ toast('请长按手动复制'); } document.body.removeChild(ta); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); }
+const copyLinkBtn = document.getElementById('copyLinkBtn');
+if (copyLinkBtn) {
+  document.getElementById('linkBox').textContent = location.href;
+  copyLinkBtn.addEventListener('click', function(){
+    copyText(location.href);
+    this.textContent = '✓ 已复制';
+    const b = this;
+    setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
+  });
+}
+</script>
+</body>
+</html>
