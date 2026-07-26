@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>爆款铺 · 小红书视频脚本生成器</title>
+<meta name="description" content="免费小红书视频脚本大纲生成器，输入主题一键生成口播/教程/种草/测评/Vlog脚本，含开场钩子、分镜和口播文案。">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #fbf7f8; --card: #ffffff; --border: #f0e6e9;
+    --text: #1c1b22; --text-dim: #6f6a76; --text-mute: #ab9aa3;
+    --accent: #ff2e63; --accent-2: #ff7a3d;
+    --grad: linear-gradient(135deg, #ff2e63 0%, #ff7a3d 100%);
+    --radius: 18px; --shadow: 0 8px 30px rgba(255,46,99,0.08); --shadow-hover: 0 14px 40px rgba(255,46,99,0.16);
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; min-height: 100vh; overflow-x: hidden; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
+  header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.82); backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--border); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; }
+  .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 15px; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.3); }
+  .nav-tabs { display: flex; gap: 4px; }
+  .nav-tabs a { color: var(--text-dim); text-decoration: none; font-size: 12px; padding: 6px 10px; border-radius: 999px; transition: all .2s; white-space: nowrap; }
+  .nav-tabs a.cur { color: #fff; background: var(--grad); font-weight: 600; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+  .nav-tabs a:not(.cur):active { background: rgba(255,46,99,0.08); }
+  @media (max-width: 640px){ .nav-tabs a:not(.cur) { display: none; } .nav-tabs a.cur { display: inline-block; } }
+
+  .hero { position: relative; padding: 46px 0 22px; text-align: center; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0; }
+  .hero::before { width: 230px; height: 230px; background: radial-gradient(circle, #ffd0dd, transparent 70%); top: -50px; left: -40px; }
+  .hero::after { width: 250px; height: 250px; background: radial-gradient(circle, #ffe0c7, transparent 70%); top: -30px; right: -60px; }
+  .hero > * { position: relative; z-index: 1; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(255,46,99,0.08); padding: 6px 14px; border-radius: 999px; margin-bottom: 14px; }
+  .hero h1 { font-size: 28px; font-weight: 900; letter-spacing: -0.6px; line-height: 1.25; }
+  .hero h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); margin: 12px auto 0; font-size: 14.5px; max-width: 440px; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+  .field-label { font-size: 13px; color: var(--text-dim); margin-bottom: 9px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .field-label .ico { font-size: 14px; }
+  input.kw { width: 100%; -webkit-appearance: none; background: #fdfafb; border: 1.5px solid var(--border); border-radius: 13px; padding: 15px 17px; color: var(--text); font-size: 16px; outline: none; transition: border-color .2s, box-shadow .2s; }
+  input.kw:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255,46,99,0.1); }
+  input.kw::placeholder { color: var(--text-mute); }
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 4px; }
+  .chip { padding: 9px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; background: #fdfafb; border: 1.5px solid var(--border); color: var(--text-dim); cursor: pointer; user-select: none; transition: all .18s; }
+  .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+  .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+  button.gen { flex: 1; background: var(--grad); color: #fff; border: none; border-radius: 13px; padding: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 22px rgba(255,46,99,0.3); transition: transform .12s, box-shadow .2s; }
+  button.gen:active { transform: translateY(1px) scale(0.99); box-shadow: 0 4px 14px rgba(255,46,99,0.28); }
+  button.ghost { background: #fdfafb; color: var(--text-dim); border: 1.5px solid var(--border); border-radius: 13px; padding: 16px 18px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .18s; }
+  button.ghost:disabled { opacity: .4; }
+
+  .results { margin-top: 26px; }
+  .results-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .results-head h2 { font-size: 17px; font-weight: 800; }
+  .results-head .count { color: var(--text-mute); font-size: 13px; }
+  .results-head .copy-all { margin-left: auto; padding: 8px 14px; font-size: 12.5px; border-radius: 9px; border: 1.5px solid var(--border); background: #fdfafb; color: var(--accent); font-weight: 600; cursor: pointer; }
+  .results-head .copy-all:active { background: rgba(255,46,99,0.08); }
+
+  .script-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 14px; animation: pop .38s cubic-bezier(.2,.8,.2,1) backwards; transition: box-shadow .18s; }
+  @keyframes pop { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .script-card:hover { box-shadow: var(--shadow-hover); }
+  .script-card .type { display: inline-block; font-size: 12px; font-weight: 700; color: #fff; background: var(--grad); padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
+  .script-card .blk { margin-bottom: 12px; }
+  .script-card .blk .lbl { font-size: 12.5px; font-weight: 700; color: var(--accent-2); margin-bottom: 5px; }
+  .script-card .hook { font-size: 15.5px; font-weight: 700; line-height: 1.5; background: rgba(255,46,99,0.05); border-left: 3px solid var(--accent); padding: 10px 12px; border-radius: 0 8px 8px 0; }
+  .script-card ol { margin: 0; padding-left: 20px; }
+  .script-card ol li { font-size: 14px; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
+  .script-card .cta { font-size: 13.5px; color: var(--text-dim); background: #fdfafb; border: 1px dashed var(--border); border-radius: 8px; padding: 10px 12px; }
+  .script-card .copy-one { margin-top: 10px; font-size: 12.5px; color: var(--accent); background: rgba(255,46,99,0.06); border: 1px solid rgba(255,46,99,0.2); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-weight: 600; }
+
+  .empty { text-align: center; color: var(--text-mute); padding: 50px 0; font-size: 14px; }
+  .empty .big { font-size: 40px; display: block; margin-bottom: 12px; }
+
+  .more { margin-top: 30px; }
+  .more h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+  .more a { display: flex; align-items: center; justify-content: space-between; padding: 15px 17px; margin-bottom: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; color: var(--text); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: all .18s; }
+  .more a span { color: var(--accent-2); font-weight: 700; transition: transform .18s; }
+  .more a:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
+  .more a:hover span { transform: translateX(4px); }
+
+  footer { margin-top: 44px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
+  footer .heart { color: var(--accent); }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px; font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  @media (max-width: 640px){ .card { padding: 18px; } .btn-row { flex-direction: column; gap: 9px; } button.gen { padding: 17px; font-size: 17px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><div class="dot">爆</div>爆款铺</div>
+    <div class="nav-tabs">
+      <a href="index.html">标题</a>
+      <a href="topics.html">选题</a>
+      <a href="script.html" class="cur">脚本</a>
+      <a href="cover.html">封面</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="badge">🎬 拍视频不用憋大纲</span>
+    <h1>小红书<span class="g">视频脚本</span>生成器</h1>
+    <p>输入你的主题，一键生成口播 / 教程 / 种草 / 测评 / Vlog 脚本大纲，含开场钩子、分镜和口播文案。</p>
+  </section>
+
+  <div class="card">
+    <div class="field-label"><span class="ico">✍️</span>你的主题 / 关键词</div>
+    <input class="kw" id="kw" placeholder="例如：减脂早餐 / 新手化妆 / 租房避坑" maxlength="30" />
+    <div class="field-label" style="margin-top:18px"><span class="ico">🎞️</span>选择视频类型（可多选）</div>
+    <div class="chips" id="chips">
+      <div class="chip active" data-type="口播">口播</div>
+      <div class="chip active" data-type="教程">教程</div>
+      <div class="chip active" data-type="种草">种草</div>
+      <div class="chip active" data-type="测评">测评</div>
+      <div class="chip active" data-type="Vlog">Vlog</div>
+    </div>
+    <div class="btn-row">
+      <button class="gen" id="genBtn">✨ 生成脚本大纲</button>
+      <button class="ghost" id="reshuffleBtn" disabled>换一批</button>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="results-head">
+      <h2>生成结果</h2>
+      <span class="count" id="count"></span>
+      <button class="copy-all" id="copyAllBtn" style="display:none">复制全部</button>
+    </div>
+    <div id="grid">
+      <div class="empty" style="grid-column:1/-1"><span class="big">🎬</span>输入主题，点生成，脚本马上来</div>
+    </div>
+  </div>
+
+  <div class="more">
+    <h3>📚 更多免费工具</h3>
+    <a href="index.html">小红书爆款标题生成器 <span>→</span></a>
+    <a href="topics.html">小红书选题灵感库 <span>→</span></a>
+    <a href="cover.html">封面文案生成器 <span>→</span></a>
+    <a href="articles/index.html">📖 创作干货文章 <span>→</span></a>
+  </div>
+</div>
+
+<footer>爆款铺 · 创作者的灵感工具箱 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
+<div class="toast" id="toast">已复制</div>
+
+<script>
+const T = {
+  口播: [
+    { hook: "别划走！{kw}这件事，我后悔没早点知道", steps: ["用反常识观点戳中痛点：'90%的人{kw}都做错了'", "抛出真相：'{kw}的真正误区其实在这里'", "核心方法分 1/2/3 步讲清楚", "金句收尾：'{kw}，其实没那么难'", "引导互动：'你中了几条？评论区告诉我'"], cta: "结尾口播：'觉得有用点个收藏，下期讲更干的'。" },
+    { hook: "谁懂啊，{kw}居然还能这样玩？", steps: ["开场抛一个让人好奇的场景", "自曝曾经踩过的坑拉近距离", "给出你的独家做法（演示/口播）", "对比前后变化强化价值", "引导：'同款链接放评论区了'"], cta: "结尾口播：'关注我，带你少走弯路'。" }
+  ],
+  教程: [
+    { hook: "{kw}保姆级教程｜看完直接抄作业", steps: ["先说你能收获什么（结果前置）", "准备清单 / 前置条件列清楚", "Step1-3 逐步演示，关键帧停顿", "易错点提醒（避坑）", "成果展示 + 鼓励行动"], cta: "结尾口播：'跟着做一遍，不会的地方评论区问我'。" },
+    { hook: "0基础也能{kw}？3分钟教会你", steps: ["用'你以为很难其实很简单'破题", "拆成最小可执行步骤", "每步配画面 + 字幕要点", "给一个偷懒小技巧", "留作业：'做完来交作业'"], cta: "结尾口播：'收藏起来慢慢练，下期进阶版'。" }
+  ],
+  种草: [
+    { hook: "被问爆的{kw}，终于肯说了", steps: ["场景痛点引入：'每次{kw}都翻车'", "产品/方法出现，制造惊艳感", "真实体验三连：好用/好看到/好划算", "适合谁 & 不适合谁（真诚）", "下单引导或平替推荐"], cta: "结尾口播：'真心推荐，链接在左下角'。" },
+    { hook: "救命！{kw}也太绝了吧", steps: ["第一视角沉浸式展示使用瞬间", "放大一个最打动人的细节", "前后对比制造反差", "加一句'早买早享受'", "引导：'同款评论区自取'"], cta: "结尾口播：'信我，闭眼入不踩雷'。" }
+  ],
+  测评: [
+    { hook: "{kw}到底值不值？实测给你看", steps: ["开宗明义：今天测{kw}", "外观/参数先过一遍", "上维度打分（价格/效果/性价比）", "真实使用一周反馈", "结论：推荐 or 劝退"], cta: "结尾口播：'预算够直接冲，想省看平替那期'。" },
+    { hook: "花了XX块测{kw}，结论很意外", steps: ["抛出反差结论勾好奇心", "横评 2-3 款快速过", "打分表一目了然", "点名最适合的人群", "避坑提醒"], cta: "结尾口播：'点赞过万出详细对比图'。" }
+  ],
+  Vlog: [
+    { hook: "记录我认真{kw}的一天", steps: ["开场用一句有氛围的话定调", "日常片段快剪 + 字幕心情", "插入一个小转折/小确幸", "结尾感悟升华（情绪价值）", "引导：'你的一天也在认真生活吗'"], cta: "结尾口播：'慢慢来，比较快'。" },
+    { hook: "一个人{kw}的周末，治愈了", steps: ["慢节奏开场，留白给氛围", "几个生活化镜头拼接", "旁白轻描淡写但有共鸣", "一个小巧思点缀", "收尾一句温柔的话"], cta: "结尾口播：'愿你也被生活温柔以待'。" }
+  ]
+};
+
+const $ = id => document.getElementById(id);
+const chips = document.querySelectorAll('.chip');
+chips.forEach(c => c.addEventListener('click', () => c.classList.toggle('active')));
+function getTypes(){ return [...chips].filter(c => c.classList.contains('active')).map(c => c.dataset.type); }
+function shuffle(a){ for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function copyText(text){ if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(()=>toast('已复制')).catch(()=>fb(text)); } else fb(text); }
+function fb(text){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.top='-9999px'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{ document.execCommand('copy'); toast('已复制'); }catch(e){ toast('请长按手动复制'); } document.body.removeChild(ta); }
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); }
+
+function generate(){
+  const kw = $('kw').value.trim();
+  const types = getTypes();
+  if (!kw) { $('kw').focus(); $('kw').style.borderColor='var(--accent)'; setTimeout(()=>$('kw').style.borderColor='',1200); return; }
+  if (!types.length) { alert('至少选一个视频类型'); return; }
+
+  const out = types.map((type, i) => {
+    const variants = T[type];
+    const v = variants[Math.floor(Math.random()*variants.length)];
+    return { type, hook: v.hook.replace(/\{kw\}/g, kw), steps: v.steps.map(s=>s.replace(/\{kw\}/g,kw)), cta: v.cta };
+  });
+
+  const grid = $('grid');
+  grid.innerHTML = '';
+  out.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'script-card';
+    card.style.animationDelay = (idx*0.05)+'s';
+    const stepsHtml = item.steps.map(s=>'<li>'+s+'</li>').join('');
+    const plain = '【'+item.type+'】开场钩子：'+item.hook+'\n分镜脚本：\n'+item.steps.map((s,i)=>(i+1)+'. '+s).join('\n')+'\n结尾引导：'+item.cta;
+    card.innerHTML =
+      '<span class="type">'+item.type+'</span>' +
+      '<div class="blk"><div class="lbl">开场钩子</div><div class="hook">'+item.hook+'</div></div>' +
+      '<div class="blk"><div class="lbl">分镜脚本</div><ol>'+stepsHtml+'</ol></div>' +
+      '<div class="blk"><div class="lbl">结尾引导</div><div class="cta">'+item.cta+'</div></div>' +
+      '<button class="copy-one">复制这段</button>';
+    card.querySelector('.copy-one').addEventListener('click', () => copyText(plain));
+    grid.appendChild(card);
+  });
+
+  $('count').textContent = '共 ' + out.length + ' 套';
+  $('reshuffleBtn').disabled = false;
+  $('copyAllBtn').style.display = 'inline-block';
+}
+
+$('genBtn').addEventListener('click', generate);
+$('reshuffleBtn').addEventListener('click', generate);
+$('kw').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
+$('copyAllBtn').addEventListener('click', function(){
+  const cards = document.querySelectorAll('.script-card');
+  if (!cards.length) return;
+  const text = Array.from(cards).map(c => {
+    const type = c.querySelector('.type').textContent;
+    const hook = c.querySelector('.hook').textContent;
+    const steps = Array.from(c.querySelectorAll('ol li')).map((li,i)=>(i+1)+'. '+li.textContent).join('\n');
+    const cta = c.querySelector('.cta').textContent;
+    return '【'+type+'】开场钩子：'+hook+'\n分镜脚本：\n'+steps+'\n结尾引导：'+cta;
+  }).join('\n\n');
+  copyText(text);
+  this.textContent='✅ 已复制全部'; setTimeout(()=>{ this.textContent='复制全部'; }, 1500);
+});
+</script>
+</body>
+</html>
