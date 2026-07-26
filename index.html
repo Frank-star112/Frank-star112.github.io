@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>爆款铺 · 小红书爆款标题生成器</title>
-<meta name="description" content="免费小红书爆款标题生成器，输入主题一键生成20+爆款标题，覆盖干货/种草/避雷/情绪/教程多种风格，创作者选题灵感必备。">
-<meta name="keywords" content="小红书标题生成器,爆款标题,小红书选题,标题灵感,文案生成器">
+<title>爆款铺 · 小红书爆款标题生成器｜创作者免费工具站</title>
+<meta name="description" content="爆款铺是小红书创作者的免费工具站：爆款标题生成器、选题灵感库、视频脚本、封面文案、正文文案、话题标签、账号简介，一站式搞定内容创作。">
+<meta name="keywords" content="小红书标题生成器,爆款标题,小红书选题,视频脚本,封面文案,文案生成器">
 <meta name="baidu_union_verify" content="51346fbd65509e375ff92c91ae65ffdf">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -28,84 +28,75 @@
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.65;
-    min-height: 100vh;
-    overflow-x: hidden;
+    background: var(--bg); color: var(--text); line-height: 1.65; min-height: 100vh; overflow-x: hidden;
   }
   .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
 
-  /* ===== Header ===== */
+  /* ===== Header / 横向滚动导航 ===== */
   header {
     position: sticky; top: 0; z-index: 30;
-    background: rgba(255,255,255,0.82);
+    background: rgba(255,255,255,0.86);
     backdrop-filter: saturate(180%) blur(14px);
     border-bottom: 1px solid var(--border);
   }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -0.3px; }
+  .nav { display: flex; align-items: center; gap: 12px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; letter-spacing: -0.3px; flex-shrink: 0; }
   .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 15px; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.3); }
-  .nav-tabs { display: flex; gap: 6px; }
-  .nav-tabs a { color: var(--text-dim); text-decoration: none; font-size: 13px; padding: 7px 13px; border-radius: 999px; transition: all .2s; }
-  .nav-tabs a.cur { color: #fff; background: var(--grad); font-weight: 600; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
-  .nav-tabs a:not(.cur):active { background: rgba(255,46,99,0.08); }
-  @media (max-width: 640px){ .nav-tabs a:not(.cur) { display: none; } .nav-tabs a.cur { display: inline-block; } }
+  .nav-scroll { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex: 1; min-width: 0; padding: 2px 0; }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-scroll a { color: var(--text-dim); text-decoration: none; font-size: 12.5px; padding: 7px 13px; border-radius: 999px; transition: all .2s; white-space: nowrap; border: 1px solid transparent; }
+  .nav-scroll a.cur { color: #fff; background: var(--grad); font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+  .nav-scroll a:not(.cur):hover { background: rgba(255,46,99,0.07); }
 
   /* ===== Hero ===== */
-  .hero { position: relative; padding: 52px 0 26px; text-align: center; overflow: hidden; }
-  .hero::before, .hero::after {
-    content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0;
-  }
+  .hero { position: relative; padding: 46px 0 22px; text-align: center; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0; }
   .hero::before { width: 240px; height: 240px; background: radial-gradient(circle, #ffd0dd, transparent 70%); top: -60px; left: -50px; }
   .hero::after { width: 260px; height: 260px; background: radial-gradient(circle, #ffe0c7, transparent 70%); top: -40px; right: -70px; }
   .hero > * { position: relative; z-index: 1; }
   .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(255,46,99,0.08); padding: 6px 14px; border-radius: 999px; margin-bottom: 16px; }
-  .hero h1 { font-size: 34px; font-weight: 900; letter-spacing: -1px; line-height: 1.2; }
+  .hero h1 { font-size: 32px; font-weight: 900; letter-spacing: -1px; line-height: 1.2; }
   .hero h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero p { color: var(--text-dim); margin: 14px auto 0; font-size: 14.5px; max-width: 460px; }
-  @media (max-width: 640px){ .hero { padding: 34px 0 20px; } .hero h1 { font-size: 26px; } }
+  @media (max-width: 640px){ .hero { padding: 32px 0 18px; } .hero h1 { font-size: 25px; } }
+
+  /* ===== 工具网格 ===== */
+  .section-h { font-size: 16px; font-weight: 800; margin: 30px 0 14px; display: flex; align-items: center; gap: 8px; }
+  .section-h .em { font-size: 18px; }
+  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 460px){ .tool-grid { grid-template-columns: 1fr; } }
+  .tool-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px;
+    text-decoration: none; color: var(--text); transition: all .2s; display: flex; flex-direction: column; gap: 7px;
+    animation: fade .4s ease backwards; position: relative; overflow: hidden;
+  }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .tool-card:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+  .tool-card .ti { width: 42px; height: 42px; border-radius: 12px; background: var(--grad-soft); display: grid; place-items: center; font-size: 21px; }
+  .tool-card .tt { font-size: 15px; font-weight: 800; }
+  .tool-card .td { font-size: 12.5px; color: var(--text-dim); line-height: 1.45; }
+  .tool-card .ta { font-size: 12px; color: var(--accent-2); font-weight: 700; margin-top: auto; }
 
   /* ===== Card ===== */
-  .card {
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 22px; box-shadow: var(--shadow); position: relative;
-  }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); position: relative; }
   .field-label { font-size: 13px; color: var(--text-dim); margin-bottom: 9px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
   .field-label .ico { font-size: 14px; }
-  input.kw {
-    width: 100%; -webkit-appearance: none; background: #fdfafb;
-    border: 1.5px solid var(--border); border-radius: 13px; padding: 15px 17px;
-    color: var(--text); font-size: 16px; outline: none; transition: border-color .2s, box-shadow .2s;
-  }
+  input.kw { width: 100%; -webkit-appearance: none; background: #fdfafb; border: 1.5px solid var(--border); border-radius: 13px; padding: 15px 17px; color: var(--text); font-size: 16px; outline: none; transition: border-color .2s, box-shadow .2s; }
   input.kw:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255,46,99,0.1); }
   input.kw::placeholder { color: var(--text-mute); }
-
   .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .examples .ex { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px dashed var(--border); padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: all .18s; }
   .examples .ex:active { background: rgba(255,46,99,0.08); color: var(--accent); border-color: var(--accent); }
-
   .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 4px; }
-  .chip {
-    padding: 9px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500;
-    background: #fdfafb; border: 1.5px solid var(--border); color: var(--text-dim); cursor: pointer; user-select: none; transition: all .18s;
-  }
+  .chip { padding: 9px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; background: #fdfafb; border: 1.5px solid var(--border); color: var(--text-dim); cursor: pointer; user-select: none; transition: all .18s; }
   .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
-
   .count-row { display: flex; gap: 9px; margin-top: 4px; }
   .seg { flex: 1; text-align: center; padding: 11px; border-radius: 12px; font-size: 14px; font-weight: 600; background: #fdfafb; border: 1.5px solid var(--border); color: var(--text-dim); cursor: pointer; transition: all .18s; }
   .seg.active { background: var(--grad); border-color: transparent; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
-
   .btn-row { display: flex; gap: 10px; margin-top: 20px; }
-  button.gen {
-    flex: 1; background: var(--grad); color: #fff; border: none; border-radius: 13px; padding: 16px;
-    font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 22px rgba(255,46,99,0.3); transition: transform .12s, box-shadow .2s;
-  }
+  button.gen { flex: 1; background: var(--grad); color: #fff; border: none; border-radius: 13px; padding: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 22px rgba(255,46,99,0.3); transition: transform .12s, box-shadow .2s; }
   button.gen:active { transform: translateY(1px) scale(0.99); box-shadow: 0 4px 14px rgba(255,46,99,0.28); }
-  button.ghost {
-    background: #fdfafb; color: var(--text-dim); border: 1.5px solid var(--border);
-    border-radius: 13px; padding: 16px 18px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .18s;
-  }
+  button.ghost { background: #fdfafb; color: var(--text-dim); border: 1.5px solid var(--border); border-radius: 13px; padding: 16px 18px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .18s; }
   button.ghost:disabled { opacity: .4; }
   button.ghost:not(:disabled):active { background: rgba(255,46,99,0.06); }
 
@@ -116,72 +107,45 @@
   .results-head .count { color: var(--text-mute); font-size: 13px; }
   .results-head .copy-all { margin-left: auto; padding: 8px 14px; font-size: 12.5px; border-radius: 9px; border: 1.5px solid var(--border); background: #fdfafb; color: var(--accent); font-weight: 600; cursor: pointer; transition: all .18s; }
   .results-head .copy-all:active { background: rgba(255,46,99,0.08); }
-
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 640px){ .grid { grid-template-columns: 1fr; } }
-
-  .title-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 15px 14px;
-    position: relative; transition: transform .18s, box-shadow .18s, border-color .18s;
-    animation: pop .38s cubic-bezier(.2,.8,.2,1) backwards;
-  }
+  .title-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 15px 14px; position: relative; transition: transform .18s, box-shadow .18s, border-color .18s; animation: pop .38s cubic-bezier(.2,.8,.2,1) backwards; }
   @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
   .title-card:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
   .title-card .t { font-size: 15px; line-height: 1.5; padding-right: 66px; font-weight: 500; }
   .title-card .tag { display: inline-block; font-size: 11px; color: var(--accent-2); margin-top: 9px; padding: 3px 9px; background: rgba(255,122,61,0.1); border-radius: 6px; font-weight: 600; }
-  .icon-btn {
-    position: absolute; top: 11px; width: 32px; height: 32px; border-radius: 9px; border: none;
-    background: #fdfafb; color: var(--text-dim); cursor: pointer; display: grid; place-items: center; font-size: 15px; transition: all .15s;
-  }
+  .icon-btn { position: absolute; top: 11px; width: 32px; height: 32px; border-radius: 9px; border: none; background: #fdfafb; color: var(--text-dim); cursor: pointer; display: grid; place-items: center; font-size: 15px; transition: all .15s; }
   .copy-btn { right: 11px; }
   .copy-btn:active { background: var(--accent); color: #fff; }
   .fav-btn { right: 49px; }
   .fav-btn:active { background: rgba(255,46,99,0.12); }
   .fav-btn.fav-on { color: #ff4d6a; background: rgba(255,77,106,0.12); }
-
   .empty { text-align: center; color: var(--text-mute); padding: 50px 0; font-size: 14px; }
   .empty .big { font-size: 40px; display: block; margin-bottom: 12px; }
 
-  /* ===== More / Footer ===== */
-  .more { margin-top: 30px; }
-  .more h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
-  .more a {
-    display: flex; align-items: center; justify-content: space-between; padding: 15px 17px; margin-bottom: 10px;
-    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-    color: var(--text); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: all .18s;
-  }
-  .more a span { color: var(--accent-2); font-weight: 700; transition: transform .18s; }
-  .more a:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
-  .more a:hover span { transform: translateX(4px); }
+  /* ===== 精选文章 ===== */
+  .posts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px){ .posts { grid-template-columns: 1fr; } }
+  .post { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 17px 18px; text-decoration: none; color: var(--text); transition: all .18s; animation: fade .4s ease backwards; }
+  .post:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .post .pt { font-size: 15.5px; font-weight: 800; line-height: 1.4; }
+  .post .pd { color: var(--text-dim); font-size: 12.5px; margin-top: 6px; line-height: 1.5; }
+  .post .pc { display: inline-block; margin-top: 10px; font-size: 11.5px; font-weight: 700; color: var(--accent-2); background: rgba(255,122,61,0.1); padding: 3px 10px; border-radius: 6px; }
 
-  footer { margin-top: 44px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
+  /* ===== Footer / More ===== */
+  footer { margin-top: 46px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
   footer .heart { color: var(--accent); }
 
   /* ===== Toast ===== */
-  .toast {
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
-    background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px;
-    font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px; font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   /* ===== Fav drawer ===== */
-  .fav-fab {
-    position: fixed; right: 18px; bottom: 22px; z-index: 40;
-    background: var(--grad); color: #fff; border: none; border-radius: 999px;
-    padding: 13px 19px; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 24px rgba(255,46,99,0.4);
-    display: flex; align-items: center; gap: 7px;
-  }
+  .fav-fab { position: fixed; right: 18px; bottom: 22px; z-index: 40; background: var(--grad); color: #fff; border: none; border-radius: 999px; padding: 13px 19px; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 24px rgba(255,46,99,0.4); display: flex; align-items: center; gap: 7px; }
   .fav-fab .cnt { background: #fff; color: var(--accent); border-radius: 999px; min-width: 20px; height: 20px; padding: 0 6px; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
   .sheet-mask { position: fixed; inset: 0; background: rgba(20,18,24,0.45); z-index: 50; opacity: 0; pointer-events: none; transition: opacity .25s; backdrop-filter: blur(2px); }
   .sheet-mask.open { opacity: 1; pointer-events: auto; }
-  .sheet {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 51; background: #fff;
-    border-radius: 22px 22px 0 0; padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
-    transform: translateY(100%); transition: transform .32s cubic-bezier(.2,.8,.2,1); max-height: 78vh; overflow-y: auto;
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.18);
-  }
+  .sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 51; background: #fff; border-radius: 22px 22px 0 0; padding: 22px 18px calc(22px + env(safe-area-inset-bottom)); transform: translateY(100%); transition: transform .32s cubic-bezier(.2,.8,.2,1); max-height: 78vh; overflow-y: auto; box-shadow: 0 -10px 40px rgba(0,0,0,0.18); }
   .sheet.open { transform: translateY(0); }
   .sheet .handle { width: 40px; height: 4px; background: #e4dde0; border-radius: 999px; margin: 0 auto 16px; }
   .sheet h3 { font-size: 17px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
@@ -197,15 +161,8 @@
   .fav-actions .copy { background: var(--grad); color: #fff; box-shadow: 0 6px 18px rgba(255,46,99,0.3); }
   .fav-actions .clear { background: #fdfafb; color: var(--text-dim); border: 1.5px solid var(--border); }
 
-  @media (max-width: 640px){
-    .card { padding: 18px; }
-    .btn-row { flex-direction: column; gap: 9px; }
-    button.gen { padding: 17px; font-size: 17px; }
-    .title-card .t { font-size: 14.5px; }
-  }
-
   /* share card */
-  .share-card { margin-top: 30px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
+  .share-card { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
   .share-card h3 { font-size: 17px; font-weight: 800; }
   .share-card .sub { color: var(--text-mute); font-size: 13px; margin: 7px 0 18px; }
   .share-body { display: flex; align-items: center; gap: 20px; justify-content: center; flex-wrap: wrap; }
@@ -214,7 +171,7 @@
   .link-box { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; max-width: 230px; word-break: break-all; margin-bottom: 10px; }
   .copy-link { background: var(--grad); color: #fff; border: none; border-radius: 9px; padding: 11px 20px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(255,46,99,0.25); transition: transform .12s; }
   .copy-link:active { transform: scale(0.97); }
-  @media (max-width: 640px){ .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
+  @media (max-width: 640px){ .card { padding: 18px; } .btn-row { flex-direction: column; gap: 9px; } button.gen { padding: 17px; font-size: 17px; } .title-card .t { font-size: 14.5px; } .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
 </style>
 </head>
 <body>
@@ -222,16 +179,22 @@
 <header>
   <div class="wrap nav">
     <div class="logo"><div class="dot">爆</div>爆款铺</div>
-    <div class="nav-tabs">
-      <a href="index.html" class="cur">标题生成器</a>
-      <a href="topics.html">选题灵感库</a>
-    </div>
+    <nav class="nav-scroll">
+      <a href="index.html" class="cur">标题</a>
+      <a href="topics.html">选题</a>
+      <a href="script.html">脚本</a>
+      <a href="cover.html">封面</a>
+      <a href="copywriter.html">文案</a>
+      <a href="hashtag.html">标签</a>
+      <a href="bio.html">简介</a>
+      <a href="articles/index.html">文章</a>
+    </nav>
   </div>
 </header>
 
 <div class="wrap">
   <section class="hero">
-    <span class="badge">🔥 创作者都在用的免费工具</span>
+    <span class="badge">🔥 创作者都在用的免费工具站</span>
     <h1>小红书<span class="g">爆款标题</span>生成器</h1>
     <p>输入你的主题，一键生成 20+ 吸睛标题。覆盖干货、种草、避雷、情绪、教程五大风格，直接复制就能用。</p>
   </section>
@@ -280,15 +243,75 @@
     </div>
   </div>
 
-  <div class="more">
-    <h3>📚 更多免费工具</h3>
-    <a href="topics.html">小红书选题灵感库 <span>→</span></a>
-    <a href="index.html">爆款标题生成器（再来一次）<span>→</span></a>
-    <a href="articles/index.html">📖 创作干货文章 <span>→</span></a>
+  <h2 class="section-h"><span class="em">🧰</span>全部免费工具</h2>
+  <div class="tool-grid">
+    <a class="tool-card" href="index.html" style="animation-delay:.02s">
+      <div class="ti">🔥</div><div class="tt">爆款标题生成器</div>
+      <div class="td">输入主题，一键生成 20+ 吸睛标题，五大风格任选。</div>
+      <div class="ta">立即使用 →</div>
+    </a>
+    <a class="tool-card" href="topics.html" style="animation-delay:.06s">
+      <div class="ti">🧭</div><div class="tt">选题灵感库</div>
+      <div class="td">8 大赛道 80+ 爆款方向，点选题直接生成标题。</div>
+      <div class="ta">找灵感 →</div>
+    </a>
+    <a class="tool-card" href="script.html" style="animation-delay:.1s">
+      <div class="ti">🎬</div><div class="tt">视频脚本生成器</div>
+      <div class="td">口播 / 教程 / 种草 / 测评 / Vlog 大纲，含分镜。</div>
+      <div class="ta">写脚本 →</div>
+    </a>
+    <a class="tool-card" href="cover.html" style="animation-delay:.14s">
+      <div class="ti">🖼️</div><div class="tt">封面文案生成器</div>
+      <div class="td">大标题 + 副标题 + 标签，带渐变封面预览。</div>
+      <div class="ta">做封面 →</div>
+    </a>
+    <a class="tool-card" href="copywriter.html" style="animation-delay:.18s">
+      <div class="ti">✍️</div><div class="tt">正文文案生成器</div>
+      <div class="td">一键生成小红书笔记正文，开头钩子到金句齐全。</div>
+      <div class="ta">写正文 →</div>
+    </a>
+    <a class="tool-card" href="hashtag.html" style="animation-delay:.22s">
+      <div class="ti">#️⃣</div><div class="tt">话题标签生成器</div>
+      <div class="td">精准标签组合，大词 + 长尾 + 自造词，蹭满流量。</div>
+      <div class="ta">打标签 →</div>
+    </a>
+    <a class="tool-card" href="bio.html" style="animation-delay:.26s">
+      <div class="ti">👤</div><div class="tt">账号简介生成器</div>
+      <div class="td">人设简介 + 口号 + 标签，快速立住账号人设。</div>
+      <div class="ta">立人设 →</div>
+    </a>
+    <a class="tool-card" href="articles/index.html" style="animation-delay:.3s">
+      <div class="ti">📖</div><div class="tt">创作干货文章</div>
+      <div class="td">标题 / 选题 / 脚本 / 封面 / 涨粉，方法一次讲透。</div>
+      <div class="ta">学方法 →</div>
+    </a>
   </div>
-</div>
 
-<div class="share-card">
+  <h2 class="section-h"><span class="em">📚</span>精选创作干货</h2>
+  <div class="posts">
+    <a class="post" href="articles/how-to-write-title.html" style="animation-delay:.05s">
+      <div class="pt">小红书标题怎么写？40 个爆款公式直接套</div>
+      <div class="pd">拆解干货 / 种草 / 避雷 / 情绪 / 教程五类标题公式，附点击率技巧。</div>
+      <span class="pc">标题写作</span>
+    </a>
+    <a class="post" href="articles/how-to-find-topics.html" style="animation-delay:.1s">
+      <div class="pt">小红书选题怎么找？8 大赛道 80+ 方向</div>
+      <div class="pd">成熟赛道清单 + 从评论区和热点挖真实需求的实操方法。</div>
+      <span class="pc">选题方法</span>
+    </a>
+    <a class="post" href="articles/how-to-write-script.html" style="animation-delay:.15s">
+      <div class="pt">小红书视频脚本怎么写？5 种类型模板</div>
+      <div class="pd">口播 / 教程 / 种草 / 测评 / Vlog 结构，含前 3 秒钩子。</div>
+      <span class="pc">脚本写作</span>
+    </a>
+    <a class="post" href="articles/how-to-grow-followers.html" style="animation-delay:.2s">
+      <div class="pt">小红书怎么涨粉？新手从 0 到 1000 实操</div>
+      <div class="pd">定位、更新频率、关键词布局、互动与工具提效全攻略。</div>
+      <span class="pc">涨粉实操</span>
+    </a>
+  </div>
+
+  <div class="share-card">
     <h3>📲 分享给朋友</h3>
     <p class="sub">扫码或复制链接，发到微信群 / 朋友圈，朋友一键打开</p>
     <div class="share-body">
@@ -299,8 +322,9 @@
       </div>
     </div>
   </div>
+</div>
 
-<footer>爆款铺 · 创作者的标题灵感库 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
+<footer>爆款铺 · 创作者的免费工具站 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
 
 <div class="fav-fab" id="favFab">❤️ 收藏 <span class="cnt" id="favCnt">0</span></div>
 <div class="sheet-mask" id="sheetMask"></div>
@@ -320,57 +344,31 @@
 <script>
 const formulas = {
   干货: [
-    "{kw}天花板！看完直接抄作业",
-    "一图看懂{kw}，小白也能上手",
-    "{kw}保姆级教程，建议收藏",
-    "{kw}进阶玩法，99%的人不知道",
-    "私藏{kw}清单，全网最全",
-    "{kw}这样做，效果直接翻倍",
-    "0基础{kw}，3步搞定",
-    "看完这篇{kw}，少走半年弯路"
+    "{kw}天花板！看完直接抄作业","一图看懂{kw}，小白也能上手","{kw}保姆级教程，建议收藏",
+    "{kw}进阶玩法，99%的人不知道","私藏{kw}清单，全网最全","{kw}这样做，效果直接翻倍",
+    "0基础{kw}，3步搞定","看完这篇{kw}，少走半年弯路"
   ],
   种草: [
-    "谁懂啊！{kw}原来这么香",
-    "被问爆的{kw}，终于找到了",
-    "{kw}神器！相见恨晚",
-    "00后都在用的{kw}，我悟了",
-    "{kw}天花板，闭眼入不踩雷",
-    "救命！{kw}也太绝了吧",
-    "囤了半年的{kw}，真心推荐",
-    "{kw}上岸，感谢自己没放弃"
+    "谁懂啊！{kw}原来这么香","被问爆的{kw}，终于找到了","{kw}神器！相见恨晚",
+    "00后都在用的{kw}，我悟了","{kw}天花板，闭眼入不踩雷","救命！{kw}也太绝了吧",
+    "囤了半年的{kw}，真心推荐","{kw}上岸，感谢自己没放弃"
   ],
   避雷: [
-    "别再踩坑！{kw}避雷指南",
-    "后悔没早知道！{kw}真相",
-    "{kw}避坑｜踩过才知道",
-    "答应我，{kw}前先看这个",
-    "{kw}的坑，我替你踩完了",
-    "别买错！{kw}选购避雷",
-    "{kw}翻车实录，引以为戒",
-    "90%的人{kw}都做错了"
+    "别再踩坑！{kw}避雷指南","后悔没早知道！{kw}真相","{kw}避坑｜踩过才知道",
+    "答应我，{kw}前先看这个","{kw}的坑，我替你踩完了","别买错！{kw}选购避雷",
+    "{kw}翻车实录，引以为戒","90%的人{kw}都做错了"
   ],
   情绪: [
-    "月薪3k也能{kw}，亲测有效",
-    "{kw}7天打卡，结果惊了",
-    "后悔没早开始{kw}",
-    "{kw}复盘｜从0到1全过程",
-    "一个人{kw}的第30天",
-    "裸辞后靠{kw}，我活下来了",
-    "{kw}让我找回了状态",
-    "致每个想放弃{kw}的你"
+    "月薪3k也能{kw}，亲测有效","{kw}7天打卡，结果惊了","后悔没早开始{kw}",
+    "{kw}复盘｜从0到1全过程","一个人{kw}的第30天","裸辞后靠{kw}，我活下来了",
+    "{kw}让我找回了状态","致每个想放弃{kw}的你"
   ],
   教程: [
-    "7天亲测｜{kw}保姆级教程",
-    "一键搞定{kw}，效率翻倍",
-    "{kw}新手指南，看这篇够了",
-    "{kw}从入门到精通",
-    "5分钟学会{kw}",
-    "{kw}实操演示，照做就行",
-    "{kw}标准化流程，可复制",
-    "手把手教{kw}，学不会算我的"
+    "7天亲测｜{kw}保姆级教程","一键搞定{kw}，效率翻倍","{kw}新手指南，看这篇够了",
+    "{kw}从入门到精通","5分钟学会{kw}","{kw}实操演示，照做就行",
+    "{kw}标准化流程，可复制","手把手教{kw}，学不会算我的"
   ]
 };
-
 const emojis = ["🔥","✨","💡","📌","🌟","💥","🎯","🚀"];
 const suffixes = ["｜建议收藏","｜亲测有效","｜建议点赞","｜全网最全","｜干货满满","｜建议反复看"];
 const pick = arr => arr[Math.floor(Math.random()*arr.length)];
@@ -421,15 +419,8 @@ function updateFavUI(){
 
 $('favFab').addEventListener('click', () => { $('sheet').classList.add('open'); $('sheetMask').classList.add('open'); });
 $('sheetMask').addEventListener('click', () => { $('sheet').classList.remove('open'); $('sheetMask').classList.remove('open'); });
-$('favCopyAll').addEventListener('click', () => {
-  const favs = getFavorites();
-  if (!favs.length) return;
-  copyText(favs.map(f => f.text).join('\n'));
-});
-$('favClear').addEventListener('click', () => {
-  if (!getFavorites().length) return;
-  if (confirm('确定清空全部收藏？')) { saveFavorites([]); updateFavUI(); toast('已清空'); }
-});
+$('favCopyAll').addEventListener('click', () => { const favs = getFavorites(); if (!favs.length) return; copyText(favs.map(f => f.text).join('\n')); });
+$('favClear').addEventListener('click', () => { if (!getFavorites().length) return; if (confirm('确定清空全部收藏？')) { saveFavorites([]); updateFavUI(); toast('已清空'); } });
 
 function getStyles(){ return [...chips].filter(c => c.classList.contains('active')).map(c => c.dataset.style); }
 function shuffle(arr){ for (let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
@@ -459,7 +450,6 @@ function generate() {
     card.className = 'title-card';
     card.style.animationDelay = (idx * 0.025) + 's';
     const isFav = isFavorite(item.text);
-    const safe = item.text.replace(/"/g,'&quot;').replace(/'/g,"\\'");
     card.innerHTML =
       '<div class="t">'+emoji+' '+item.text+'</div>' +
       '<span class="tag">'+item.tag+'</span>' +
