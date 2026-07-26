@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>爆款铺 · 小红书爆款标题生成器</title>
+<meta name="description" content="免费小红书爆款标题生成器，输入主题一键生成20+爆款标题，覆盖干货/种草/避雷/情绪/教程多种风格，创作者选题灵感必备。">
+<meta name="keywords" content="小红书标题生成器,爆款标题,小红书选题,标题灵感,文案生成器">
+<meta name="baidu_union_verify" content="51346fbd65509e375ff92c91ae65ffdf">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #f4f5f7;
+    --bg-2: #ffffff;
+    --card: #ffffff;
+    --card-hover: #fff7f9;
+    --border: #e7e9ee;
+    --text: #1f2230;
+    --text-dim: #707686;
+    --text-mute: #a3a8b5;
+    --accent: #ff2e63;
+    --accent-2: #ff6b35;
+    --grad: linear-gradient(135deg, #ff2e63 0%, #ff6b35 100%);
+    --radius: 14px;
+    --green: #18a058;
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 18px; }
+  .logo .dot { width: 26px; height: 26px; border-radius: 8px; background: var(--grad); display: grid; place-items: center; font-size: 14px; color: #fff; }
+  .nav-tabs { display: flex; gap: 16px; font-size: 13px; color: var(--text-dim); }
+  .nav-tabs a { color: var(--text-dim); text-decoration: none; }
+  .nav-tabs a.cur { color: var(--accent); font-weight: 600; }
+  @media (max-width: 640px){ .nav-tabs { display: none; } }
+
+  .hero { padding: 40px 0 20px; text-align: center; }
+  .hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; }
+  .hero h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); margin-top: 10px; font-size: 14px; }
+  @media (max-width: 640px){ .hero { padding: 26px 0 14px; } .hero h1 { font-size: 23px; } }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(20,20,40,0.04);
+  }
+  .field-label { font-size: 13px; color: var(--text-dim); margin-bottom: 8px; font-weight: 600; }
+  input.kw {
+    width: 100%; -webkit-appearance: none;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-size: 16px;
+    outline: none;
+  }
+  input.kw:focus { border-color: var(--accent); }
+  input.kw::placeholder { color: var(--text-mute); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .chip {
+    padding: 8px 14px; border-radius: 999px; font-size: 13px;
+    background: var(--bg); border: 1px solid var(--border);
+    color: var(--text-dim); cursor: pointer; user-select: none;
+  }
+  .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 600; }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 18px; }
+  button.gen {
+    flex: 1; background: var(--grad); color: #fff; border: none;
+    border-radius: 10px; padding: 14px; font-size: 15px; font-weight: 700;
+    cursor: pointer;
+  }
+  button.ghost {
+    background: var(--bg); color: var(--text-dim); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 18px; font-size: 14px; cursor: pointer;
+  }
+  button.ghost:disabled { opacity: .4; }
+
+  .results { margin-top: 24px; }
+  .results-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .results-head h2 { font-size: 16px; font-weight: 700; }
+  .results-head .count { color: var(--text-mute); font-size: 13px; }
+  .results-head .copy-all { margin-left: auto; padding: 6px 12px; font-size: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text-dim); cursor: pointer; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px){ .grid { grid-template-columns: 1fr; } }
+
+  .title-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 14px 14px 14px; position: relative;
+  }
+  .title-card:hover { background: var(--card-hover); border-color: var(--accent); }
+  .title-card .t { font-size: 15px; line-height: 1.5; padding-right: 64px; }
+  .title-card .tag { display: inline-block; font-size: 11px; color: var(--accent-2); margin-top: 8px; padding: 2px 8px; background: rgba(255,107,53,0.1); border-radius: 4px; }
+  .icon-btn {
+    position: absolute; top: 10px; width: 30px; height: 30px; border-radius: 8px; border: none;
+    background: var(--bg); color: var(--text-dim); cursor: pointer; display: grid; place-items: center; font-size: 14px;
+  }
+  .copy-btn { right: 10px; }
+  .fav-btn { right: 46px; }
+  .copy-btn:active { background: var(--accent); color: #fff; }
+  .fav-btn.fav-on { color: #ff4d6a; background: rgba(255,77,106,0.12); }
+
+  .empty { text-align: center; color: var(--text-mute); padding: 46px 0; font-size: 14px; }
+
+  .more { margin-top: 26px; }
+  .more h3 { font-size: 15px; margin-bottom: 12px; }
+  .more a {
+    display: block; padding: 14px 16px; margin-bottom: 10px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    color: var(--text); text-decoration: none; font-size: 14px;
+  }
+  .more a span { color: var(--accent-2); float: right; }
+
+  footer { margin-top: 40px; border-top: 1px solid var(--border); padding: 22px 0; color: var(--text-mute); font-size: 12px; text-align: center; }
+
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--green); color: #fff; padding: 10px 20px; border-radius: 8px;
+    font-size: 14px; opacity: 0; transition: opacity .25s; pointer-events: none; z-index: 50;
+  }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 640px){
+    .card { padding: 16px; }
+    .btn-row { flex-direction: column; gap: 8px; }
+    button.gen { padding: 16px; font-size: 16px; }
+    .title-card .t { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><div class="dot">爆</div>爆款铺</div>
+    <div class="nav-tabs">
+      <a href="index.html" class="cur">标题生成器</a>
+      <a href="topics.html">选题灵感库</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>小红书<span class="g">爆款标题</span>生成器</h1>
+    <p>输入你的主题，一键生成 20+ 爆款标题。覆盖干货、种草、避雷、情绪、教程五大风格，直接复制即用。</p>
+  </section>
+
+  <div class="card">
+    <div class="field-label">你的主题 / 关键词</div>
+    <input class="kw" id="kw" placeholder="例如：减脂早餐 / 新手化妆 / 租房避坑" maxlength="30" />
+    <div class="field-label" style="margin-top:16px">选择风格（可多选）</div>
+    <div class="chips" id="chips">
+      <div class="chip active" data-style="干货">干货</div>
+      <div class="chip active" data-style="种草">种草</div>
+      <div class="chip active" data-style="避雷">避雷</div>
+      <div class="chip active" data-style="情绪">情绪共鸣</div>
+      <div class="chip active" data-style="教程">教程</div>
+    </div>
+    <div class="field-label" style="margin-top:16px">生成数量</div>
+    <select id="countSelect" style="-webkit-appearance:none;width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:15px;outline:none;margin-top:8px">
+      <option value="10">10 条（快速）</option>
+      <option value="20" selected>20 条（推荐）</option>
+      <option value="50">50 条（批量）</option>
+    </select>
+    <div class="btn-row">
+      <button class="gen" id="genBtn">生成爆款标题</button>
+      <button class="ghost" id="reshuffleBtn" disabled>换一批</button>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="results-head">
+      <h2>生成结果</h2>
+      <span class="count" id="count"></span>
+      <button class="copy-all" id="copyAllBtn" style="display:none">复制全部</button>
+    </div>
+    <div class="grid" id="grid">
+      <div class="empty" style="grid-column:1/-1">输入主题，点生成，标题马上来 👇</div>
+    </div>
+  </div>
+
+  <div class="more">
+    <h3>📚 更多免费工具</h3>
+    <a href="topics.html">小红书选题灵感库 <span>→</span></a>
+    <a href="index.html">爆款标题生成器（再来一次）<span>→</span></a>
+  </div>
+</div>
+
+<footer>爆款铺 · 创作者的标题灵感库 · 免费工具，由阿坎打造</footer>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+const formulas = {
+  干货: [
+    "{kw}天花板！看完直接抄作业",
+    "一图看懂{kw}，小白也能上手",
+    "{kw}保姆级教程，建议收藏",
+    "{kw}进阶玩法，99%的人不知道",
+    "私藏{kw}清单，全网最全",
+    "{kw}这样做，效果直接翻倍",
+    "0基础{kw}，3步搞定",
+    "看完这篇{kw}，少走半年弯路"
+  ],
+  种草: [
+    "谁懂啊！{kw}原来这么香",
+    "被问爆的{kw}，终于找到了",
+    "{kw}神器！相见恨晚",
+    "00后都在用的{kw}，我悟了",
+    "{kw}天花板，闭眼入不踩雷",
+    "救命！{kw}也太绝了吧",
+    "囤了半年的{kw}，真心推荐",
+    "{kw}上岸，感谢自己没放弃"
+  ],
+  避雷: [
+    "别再踩坑！{kw}避雷指南",
+    "后悔没早知道！{kw}真相",
+    "{kw}避坑｜踩过才知道",
+    "答应我，{kw}前先看这个",
+    "{kw}的坑，我替你踩完了",
+    "别买错！{kw}选购避雷",
+    "{kw}翻车实录，引以为戒",
+    "90%的人{kw}都做错了"
+  ],
+  情绪: [
+    "月薪3k也能{kw}，亲测有效",
+    "{kw}7天打卡，结果惊了",
+    "后悔没早开始{kw}",
+    "{kw}复盘｜从0到1全过程",
+    "一个人{kw}的第30天",
+    "裸辞后靠{kw}，我活下来了",
+    "{kw}让我找回了状态",
+    "致每个想放弃{kw}的你"
+  ],
+  教程: [
+    "7天亲测｜{kw}保姆级教程",
+    "一键搞定{kw}，效率翻倍",
+    "{kw}新手指南，看这篇够了",
+    "{kw}从入门到精通",
+    "5分钟学会{kw}",
+    "{kw}实操演示，照做就行",
+    "{kw}标准化流程，可复制",
+    "手把手教{kw}，学不会算我的"
+  ]
+};
+
+const emojis = ["🔥","✨","💡","📌","🌟","💥","🎯","🚀"];
+const suffixes = ["｜建议收藏","｜亲测有效","｜建议点赞","｜全网最全","｜干货满满","｜建议反复看"];
+const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+const $ = id => document.getElementById(id);
+const chips = document.querySelectorAll('.chip');
+
+chips.forEach(c => c.addEventListener('click', () => c.classList.toggle('active')));
+
+let lastKw = '', lastStyles = [];
+
+function getStyles() {
+  return [...chips].filter(c => c.classList.contains('active')).map(c => c.dataset.style);
+}
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function generate() {
+  const kw = $('kw').value.trim();
+  const styles = getStyles();
+  if (!kw) { $('kw').focus(); $('kw').style.borderColor = 'var(--accent)'; setTimeout(()=>$('kw').style.borderColor='',1200); return; }
+  if (!styles.length) { alert('至少选一个风格'); return; }
+
+  lastKw = kw; lastStyles = styles;
+  let pool = [];
+  styles.forEach(s => {
+    formulas[s].forEach(f => {
+      let text = f.replace(/\{kw\}/g, kw);
+      if (Math.random() < 0.35) text += pick(suffixes);
+      pool.push({ text, tag: s });
+    });
+  });
+  const maxCount = parseInt($('countSelect').value);
+  const pool2 = shuffle(pool);
+  let final = [];
+  for (let i = 0; i < maxCount; i++) final.push(pool2[i % pool2.length]);
+  pool = shuffle(final);
+
+  const grid = $('grid');
+  grid.innerHTML = '';
+  pool.forEach(item => {
+    const emoji = emojis[Math.floor(Math.random()*emojis.length)];
+    const card = document.createElement('div');
+    card.className = 'title-card';
+    const isFav = isFavorite(item.text);
+    const safeT = item.text.replace(/"/g,'&quot;').replace(/'/g,"\\'");
+    card.innerHTML =
+      '<div class="t">' + emoji + ' ' + item.text + '</div>' +
+      '<span class="tag">' + item.tag + '</span>' +
+      '<button class="icon-btn fav-btn ' + (isFav?'fav-on':'') + '" data-text="' + safeT + '" data-tag="' + item.tag + '" title="收藏">♥</button>' +
+      '<button class="icon-btn copy-btn" title="复制">⧉</button>';
+    card.querySelector('.copy-btn').addEventListener('click', function(){ copyText(emoji + ' ' + item.text); });
+    card.querySelector('.fav-btn').addEventListener('click', function(){
+      const added = toggleFavorite(this.dataset.text, this.dataset.tag);
+      this.classList.toggle('fav-on', added);
+    });
+    grid.appendChild(card);
+  });
+
+  $('count').textContent = '共 ' + pool.length + ' 条';
+  $('reshuffleBtn').disabled = false;
+  $('copyAllBtn').style.display = 'inline-block';
+}
+
+function copyText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => toast('已复制')).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-9999px'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); toast('已复制'); }
+  catch (e) { toast('复制失败，请长按手动复制'); }
+  document.body.removeChild(ta);
+}
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1200);
+}
+
+const FAV_KEY = 'baokanpu_favorites';
+function getFavorites(){ try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch(e){ return []; } }
+function saveFavorites(f){ try { localStorage.setItem(FAV_KEY, JSON.stringify(f)); } catch(e){} }
+function isFavorite(t){ return getFavorites().some(f => f.text === t); }
+function toggleFavorite(text, tag){
+  let favs = getFavorites();
+  const i = favs.findIndex(f => f.text === text);
+  const added = i < 0;
+  if (added) favs.push({text, tag}); else favs.splice(i, 1);
+  saveFavorites(favs); renderFavorites(); return added;
+}
+function renderFavorites(){
+  const favs = getFavorites();
+  const box = $('favBox');
+  if (!box) return;
+  if (!favs.length) { box.innerHTML = ''; return; }
+  box.innerHTML = '<div style="margin-top:18px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px">' +
+    '<div style="color:var(--accent-2);font-size:14px;font-weight:600;margin-bottom:8px">❤️ 我的收藏（' + favs.length + '）</div>' +
+    favs.map(f => {
+      const txt = f.text.replace(/"/g,'&quot;');
+      return '<div style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:6px">' +
+        '<span style="flex:1;font-size:13px;color:var(--text-dim)">' + f.text + '</span>' +
+        '<button onclick="copyText(\'' + txt + '\');this.textContent=\'已复制\';setTimeout(()=>this.textContent=\'复制\',1000)" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--text-dim);cursor:pointer">复制</button>' +
+        '<button onclick="toggleFavorite(\'' + txt + '\',\'' + f.tag + '\')" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--text-dim);cursor:pointer">删除</button>' +
+        '</div>';
+    }).join('') + '</div>';
+}
+
+$('genBtn').addEventListener('click', generate);
+$('reshuffleBtn').addEventListener('click', generate);
+$('kw').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
+
+(function(){
+  const p = new URLSearchParams(location.search);
+  const kw = p.get('kw');
+  if (kw) { $('kw').value = kw; generate(); }
+})();
+
+$('copyAllBtn').addEventListener('click', function(){
+  const items = document.querySelectorAll('.title-card .t');
+  if (!items.length) return;
+  const text = Array.from(items).map(el => el.textContent).join('\n');
+  copyText(text);
+  this.textContent = '✅ 已复制全部';
+  setTimeout(() => { this.textContent = '复制全部'; }, 1500);
+});
+
+renderFavorites();
+</script>
+</body>
+</html>
