@@ -105,12 +105,22 @@
   .next-txt b { font-size: 14px; font-weight: 700; }
   .next-txt i { font-style: normal; font-size: 12.5px; color: var(--text-dim); }
   .next-go { color: var(--text-mute); font-size: 16px; flex-shrink: 0; }
+
+  .faq { margin-top: 30px; }
+  .faq > h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+  .faq details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 9px; overflow: hidden; }
+  .faq summary { padding: 13px 15px; font-size: 14px; font-weight: 700; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "Q"; width: 22px; height: 22px; border-radius: 7px; background: var(--grad-soft); color: var(--accent); font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .faq details[open] summary { border-bottom: 1px dashed var(--border); }
+  .faq .a { padding: 11px 15px 13px; font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
 </style>
 <meta name="theme-color" content="#ff2e63">
 <meta property="og:image" content="https://frank-star112.github.io/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://frank-star112.github.io/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"小红书正文文案生成器","url":"https://frank-star112.github.io/copywriter.html","description":"种草/干货/测评/情感/教程正文一键生成，带钩子和金句。","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"publisher":{"@type":"Organization","name":"爆款铺","url":"https://frank-star112.github.io/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"小红书正文多少字合适？","acceptedAnswer":{"@type":"Answer","text":"300-600 字最佳。太短没信息量难获认同，太长阅读完成率低。生成的正文可以按这个区间删改。"}},{"@type":"Question","name":"生成的文案会和别人重复吗？","acceptedAnswer":{"@type":"Answer","text":"工具从多套模板随机组合，重复概率低。而且正文只是骨架，你替换成自己的产品名、数字、经历后就是独一无二的。"}},{"@type":"Question","name":"正文里可以放联系方式吗？","acceptedAnswer":{"@type":"Answer","text":"不建议。正文出现微信号、手机号大概率被限流甚至封号，引流应该用官方允许的方式（群聊、店铺、瞬间）。"}}]}</script>
 </head>
 <body>
 <header>
@@ -170,6 +180,11 @@
     <a class="next-item" href="index.html"><span class="next-ico" style="background:#ffe3ec;color:#ff2e63">题</span><span class="next-txt"><b>爆款标题生成器</b><i>再回头配个更炸的标题</i></span><span class="next-go">→</span></a>
     <a class="next-item" href="articles/how-to-grow-followers.html"><span class="next-ico" style="background:#ffe3ec;color:#ff2e63">干</span><span class="next-txt"><b>从0到1000粉实操攻略</b><i>写得好还要涨得快，看攻略</i></span><span class="next-go">→</span></a>
   </div>
+
+  <div class="faq">
+  <h3>💬 常见问题</h3>
+  <details><summary>小红书正文多少字合适？</summary><div class="a">300-600 字最佳。太短没信息量难获认同，太长阅读完成率低。生成的正文可以按这个区间删改。</div></details><details><summary>生成的文案会和别人重复吗？</summary><div class="a">工具从多套模板随机组合，重复概率低。而且正文只是骨架，你替换成自己的产品名、数字、经历后就是独一无二的。</div></details><details><summary>正文里可以放联系方式吗？</summary><div class="a">不建议。正文出现微信号、手机号大概率被限流甚至封号，引流应该用官方允许的方式（群聊、店铺、瞬间）。</div></details>
+</div>
 
   <div class="share-card">
     <h3>📲 分享给朋友</h3>
@@ -280,6 +295,16 @@ if (copyLinkBtn) {
     setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
   });
 }
+</script>
+<script>
+(function(){try{
+var K='bkp_stats',p=location.pathname.split('/').pop()||'index.html';
+function load(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return{}}}
+function inc(n){var s=load();s[p]=s[p]||{};s[p][n]=(s[p][n]||0)+1;s[p].last=Date.now();try{localStorage.setItem(K,JSON.stringify(s))}catch(e){}}
+inc('pv');
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('button'):null;if(!b)return;
+if(b.id==='genBtn')inc('gen');else if(b.id==='copyAllBtn')inc('copyAll');else if(b.id==='reshuffleBtn')inc('reshuffle');});
+}catch(e){}})();
 </script>
 </body>
 </html>
