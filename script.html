@@ -108,12 +108,22 @@
   .next-txt b { font-size: 14px; font-weight: 700; }
   .next-txt i { font-style: normal; font-size: 12.5px; color: var(--text-dim); }
   .next-go { color: var(--text-mute); font-size: 16px; flex-shrink: 0; }
+
+  .faq { margin-top: 30px; }
+  .faq > h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+  .faq details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 9px; overflow: hidden; }
+  .faq summary { padding: 13px 15px; font-size: 14px; font-weight: 700; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "Q"; width: 22px; height: 22px; border-radius: 7px; background: var(--grad-soft); color: var(--accent); font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .faq details[open] summary { border-bottom: 1px dashed var(--border); }
+  .faq .a { padding: 11px 15px 13px; font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
 </style>
 <meta name="theme-color" content="#ff2e63">
 <meta property="og:image" content="https://frank-star112.github.io/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://frank-star112.github.io/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"小红书视频脚本生成器","url":"https://frank-star112.github.io/script.html","description":"口播/教程/种草/测评/Vlog 五类脚本模板一键生成。","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"publisher":{"@type":"Organization","name":"爆款铺","url":"https://frank-star112.github.io/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"生成的脚本可以商用吗？","acceptedAnswer":{"@type":"Answer","text":"可以，生成内容没有版权限制。建议把口播词改成你自己的语气再拍，真实感是小红书视频最重要的。"}},{"@type":"Question","name":"小红书视频多长最合适？","acceptedAnswer":{"@type":"Answer","text":"新手建议 30-60 秒：太短讲不清价值，太长完播率掉得厉害。等有粉丝基础后再尝试 3 分钟以上的深度内容。"}},{"@type":"Question","name":"照着脚本拍还是没流量怎么办？","acceptedAnswer":{"@type":"Answer","text":"脚本只解决结构问题，前 3 秒钩子和封面决定点击。检查你的开头是否直接抛出了痛点或结果，别慢热。"}}]}</script>
 </head>
 <body>
 <header>
@@ -173,6 +183,11 @@
     <a class="next-item" href="copywriter.html"><span class="next-ico" style="background:#dff5ee;color:#0f9d77">文</span><span class="next-txt"><b>正文文案生成器</b><i>再配一篇种草正文</i></span><span class="next-go">→</span></a>
     <a class="next-item" href="articles/how-to-write-script.html"><span class="next-ico" style="background:#dff5ee;color:#0f9d77">干</span><span class="next-txt"><b>脚本怎么写？3秒抓住人</b><i>学会让开头3秒抓住人</i></span><span class="next-go">→</span></a>
   </div>
+
+  <div class="faq">
+  <h3>💬 常见问题</h3>
+  <details><summary>生成的脚本可以商用吗？</summary><div class="a">可以，生成内容没有版权限制。建议把口播词改成你自己的语气再拍，真实感是小红书视频最重要的。</div></details><details><summary>小红书视频多长最合适？</summary><div class="a">新手建议 30-60 秒：太短讲不清价值，太长完播率掉得厉害。等有粉丝基础后再尝试 3 分钟以上的深度内容。</div></details><details><summary>照着脚本拍还是没流量怎么办？</summary><div class="a">脚本只解决结构问题，前 3 秒钩子和封面决定点击。检查你的开头是否直接抛出了痛点或结果，别慢热。</div></details>
+</div>
 
   <div class="share-card">
     <h3>📲 分享给朋友</h3>
@@ -284,6 +299,16 @@ if (copyLinkBtn) {
     setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
   });
 }
+</script>
+<script>
+(function(){try{
+var K='bkp_stats',p=location.pathname.split('/').pop()||'index.html';
+function load(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return{}}}
+function inc(n){var s=load();s[p]=s[p]||{};s[p][n]=(s[p][n]||0)+1;s[p].last=Date.now();try{localStorage.setItem(K,JSON.stringify(s))}catch(e){}}
+inc('pv');
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('button'):null;if(!b)return;
+if(b.id==='genBtn')inc('gen');else if(b.id==='copyAllBtn')inc('copyAll');else if(b.id==='reshuffleBtn')inc('reshuffle');});
+}catch(e){}})();
 </script>
 </body>
 </html>
