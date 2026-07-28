@@ -106,12 +106,22 @@
   .next-txt b { font-size: 14px; font-weight: 700; }
   .next-txt i { font-style: normal; font-size: 12.5px; color: var(--text-dim); }
   .next-go { color: var(--text-mute); font-size: 16px; flex-shrink: 0; }
+
+  .faq { margin-top: 30px; }
+  .faq > h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+  .faq details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 9px; overflow: hidden; }
+  .faq summary { padding: 13px 15px; font-size: 14px; font-weight: 700; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "Q"; width: 22px; height: 22px; border-radius: 7px; background: var(--grad-soft); color: var(--accent); font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .faq details[open] summary { border-bottom: 1px dashed var(--border); }
+  .faq .a { padding: 11px 15px 13px; font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
 </style>
 <meta name="theme-color" content="#ff2e63">
 <meta property="og:image" content="https://frank-star112.github.io/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://frank-star112.github.io/og-image.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"小红书账号简介生成器","url":"https://frank-star112.github.io/bio.html","description":"5种人设账号简介一键生成，含口号与标签。","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"publisher":{"@type":"Organization","name":"爆款铺","url":"https://frank-star112.github.io/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"账号简介多久改一次合适？","acceptedAnswer":{"@type":"Answer","text":"定位没变就别频繁改。频繁改简介和昵称会让算法重新识别你的账号定位，影响推荐稳定性。"}},{"@type":"Question","name":"简介里能放微信号吗？","acceptedAnswer":{"@type":"Answer","text":"不能直接放，会被判定导流违规。可以放邮箱（官方允许），或引导私信，粉丝多了再开通群聊。"}},{"@type":"Question","name":"简介写什么最容易涨粉？","acceptedAnswer":{"@type":"Answer","text":"一句话讲清「你是谁 + 能给粉丝什么价值 + 更新节奏」，比如「5年美妆配方师｜每周三更成分测评」。价值感比文艺感重要。"}}]}</script>
 </head>
 <body>
 <header>
@@ -169,6 +179,11 @@
     <a class="next-item" href="index.html"><span class="next-ico" style="background:#ffe3ec;color:#ff2e63">题</span><span class="next-txt"><b>爆款标题生成器</b><i>第一篇笔记从好标题开始</i></span><span class="next-go">→</span></a>
     <a class="next-item" href="articles/how-to-write-bio.html"><span class="next-ico" style="background:#dff5ee;color:#0f9d77">干</span><span class="next-txt"><b>简介怎么写？4类人设模板</b><i>简介背后的人设逻辑详解</i></span><span class="next-go">→</span></a>
   </div>
+
+  <div class="faq">
+  <h3>💬 常见问题</h3>
+  <details><summary>账号简介多久改一次合适？</summary><div class="a">定位没变就别频繁改。频繁改简介和昵称会让算法重新识别你的账号定位，影响推荐稳定性。</div></details><details><summary>简介里能放微信号吗？</summary><div class="a">不能直接放，会被判定导流违规。可以放邮箱（官方允许），或引导私信，粉丝多了再开通群聊。</div></details><details><summary>简介写什么最容易涨粉？</summary><div class="a">一句话讲清「你是谁 + 能给粉丝什么价值 + 更新节奏」，比如「5年美妆配方师｜每周三更成分测评」。价值感比文艺感重要。</div></details>
+</div>
 
   <div class="share-card">
     <h3>📲 分享给朋友</h3>
@@ -277,6 +292,16 @@ if (copyLinkBtn) {
     setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
   });
 }
+</script>
+<script>
+(function(){try{
+var K='bkp_stats',p=location.pathname.split('/').pop()||'index.html';
+function load(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return{}}}
+function inc(n){var s=load();s[p]=s[p]||{};s[p][n]=(s[p][n]||0)+1;s[p].last=Date.now();try{localStorage.setItem(K,JSON.stringify(s))}catch(e){}}
+inc('pv');
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('button'):null;if(!b)return;
+if(b.id==='genBtn')inc('gen');else if(b.id==='copyAllBtn')inc('copyAll');else if(b.id==='reshuffleBtn')inc('reshuffle');});
+}catch(e){}})();
 </script>
 </body>
 </html>
