@@ -57,6 +57,17 @@
   .article code { background: #fdfafb; border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; font-size: 13.5px; color: var(--accent); }
   .article .track { display: inline-block; margin: 0 6px 6px 0; font-size: 13px; font-weight: 600; color: var(--accent-2); background: rgba(255,122,61,0.1); padding: 5px 12px; border-radius: 999px; }
 
+  .goods-card { margin: 18px 0; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px; box-shadow: var(--shadow); }
+  .goods-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .goods-tag { font-size: 12px; font-weight: 700; color: var(--accent-2); background: rgba(255,122,61,0.1); padding: 4px 11px; border-radius: 999px; }
+  .goods-ad { font-size: 11px; color: var(--text-mute); }
+  .goods-body { display: flex; gap: 13px; align-items: center; }
+  .goods-pic { width: 74px; height: 74px; border-radius: 12px; background: linear-gradient(135deg,#fff3e4,#ffe3d1); display: grid; place-items: center; font-size: 34px; flex-shrink: 0; }
+  .goods-info { flex: 1; min-width: 0; }
+  .goods-name { font-size: 14.5px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; }
+  .goods-why { font-size: 12.5px; color: var(--text-dim); line-height: 1.5; }
+  .goods-btn { flex-shrink: 0; display: inline-block; padding: 10px 16px; background: var(--grad); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 13px; box-shadow: 0 4px 12px rgba(255,46,99,0.25); white-space: nowrap; }
+  @media (max-width: 480px){ .goods-body { flex-wrap: wrap; } .goods-btn { width: 100%; text-align: center; } }
   .cta-box { margin-top: 24px; background: rgba(255,46,99,0.06); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
   .cta-box .t { font-weight: 800; font-size: 16px; margin-bottom: 6px; }
   .cta-box .s { color: var(--text-dim); font-size: 13.5px; margin-bottom: 14px; }
@@ -142,6 +153,18 @@
     <ol><li>氛围定调开场</li><li>日常快剪+字幕</li><li>小转折/小确幸</li><li>感悟升华</li><li>温柔收尾</li></ol>
 
     <div class="tip">脚本不用写逐字稿，把「钩子 + 分镜要点 + 结尾引导」列清楚就够拍了。越细越容易卡，先动起来。</div>
+
+    <div class="goods-card">
+      <div class="goods-head"><span class="goods-tag">🎙️ 拍摄好物</span><span class="goods-ad">广告 · 含返佣链接</span></div>
+      <div class="goods-body">
+        <div class="goods-pic">🎤</div>
+        <div class="goods-info">
+          <div class="goods-name">无线领夹麦克风</div>
+          <div class="goods-why">口播视频最劝退的不是画面，是「声音又闷又飘」——一个领夹麦收音干净人声清晰，完播率立刻不一样。</div>
+        </div>
+        <a class="goods-btn" href="https://m.tb.cn/h.8WniDGq" target="_blank" rel="nofollow sponsored noopener">去看看 →</a>
+      </div>
+    </div>
 
     <h2>三、写完做一件事：念一遍</h2>
     <p>把脚本大声念出来，哪里拗口就在哪里改。口语化比书面语完播率高得多。</p>
