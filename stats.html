@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>使用统计 · 爆款铺</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#ff2e63">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --bg:#fbf7f8; --card:#fff; --border:#f0e6e9; --text:#1c1b22; --dim:#6f6a76; --mute:#ab9aa3; --accent:#ff2e63; --grad:linear-gradient(135deg,#ff2e63,#ff7a3d); }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+  .wrap { max-width:720px; margin:0 auto; padding:26px 18px 50px; }
+  h1 { font-size:22px; font-weight:900; margin-bottom:4px; }
+  .sub { color:var(--mute); font-size:13px; margin-bottom:20px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px 18px; margin-bottom:12px; box-shadow:0 8px 30px rgba(255,46,99,.06); }
+  .card h2 { font-size:15px; font-weight:800; display:flex; justify-content:space-between; align-items:center; }
+  .card h2 small { font-weight:600; color:var(--mute); font-size:12px; }
+  .bar-row { display:flex; align-items:center; gap:10px; margin-top:10px; font-size:13px; }
+  .bar-row .lbl { width:70px; color:var(--dim); flex-shrink:0; }
+  .bar-wrap { flex:1; height:16px; background:#f8eef1; border-radius:99px; overflow:hidden; }
+  .bar { height:100%; background:var(--grad); border-radius:99px; min-width:2px; transition:width .5s; }
+  .bar-row b { width:44px; text-align:right; font-size:13px; }
+  .empty { text-align:center; color:var(--mute); padding:50px 0; font-size:14px; }
+  .note { font-size:12px; color:var(--mute); margin-top:18px; background:var(--card); border:1px dashed var(--border); border-radius:12px; padding:12px 14px; }
+  .btns { margin-top:16px; display:flex; gap:10px; }
+  .btns button, .btns a { flex:1; padding:11px; border-radius:10px; border:1px solid var(--border); background:var(--card); color:var(--dim); font-size:13px; font-weight:700; cursor:pointer; text-align:center; text-decoration:none; }
+  .btns .danger { color:#d33; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📊 使用统计（本机）</h1>
+  <div class="sub">纯本地统计，数据只存在这台设备的浏览器里，不上传任何服务器</div>
+  <div id="list"></div>
+  <div class="note">说明：这是纯前端埋点，统计的是<b>当前浏览器</b>上的使用情况（pv=打开次数，gen=点「生成」次数，copyAll=复制全部次数）。想看真实全网数据需要接入统计服务，暂未接入以保持零外部脚本。</div>
+  <div class="btns">
+    <a href="index.html">← 回首页</a>
+    <button class="danger" onclick="if(confirm('清空本机统计数据？')){localStorage.removeItem('bkp_stats');location.reload();}">清空数据</button>
+  </div>
+</div>
+<script>
+(function(){
+  var NAMES = {
+    'index.html':'标题生成器','topics.html':'选题灵感库','script.html':'脚本生成器',
+    'cover.html':'封面文案','copywriter.html':'正文文案','hashtag.html':'话题标签','bio.html':'账号简介'
+  };
+  var METRIC = { pv:'打开', gen:'生成', copyAll:'复制全部', reshuffle:'换一批' };
+  var s = {};
+  try { s = JSON.parse(localStorage.getItem('bkp_stats')||'{}'); } catch(e){}
+  var list = document.getElementById('list');
+  var keys = Object.keys(s).filter(function(k){ return NAMES[k]; });
+  if (!keys.length) { list.innerHTML = '<div class="empty">还没有数据。去各个工具页用一用，回来就能看到统计。</div>'; return; }
+  keys.sort(function(a,b){ return (s[b].pv||0)-(s[a].pv||0); });
+  var maxv = 1;
+  keys.forEach(function(k){ Object.keys(METRIC).forEach(function(m){ maxv = Math.max(maxv, s[k][m]||0); }); });
+  keys.forEach(function(k){
+    var d = s[k], last = d.last ? new Date(d.last).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '';
+    var rows = Object.keys(METRIC).map(function(m){
+      var v = d[m]||0; if (!v) return '';
+      return '<div class="bar-row"><span class="lbl">'+METRIC[m]+'</span><div class="bar-wrap"><div class="bar" style="width:'+(v/maxv*100)+'%"></div></div><b>'+v+'</b></div>';
+    }).join('');
+    list.insertAdjacentHTML('beforeend',
+      '<div class="card"><h2>'+NAMES[k]+'<small>最近使用 '+last+'</small></h2>'+rows+'</div>');
+  });
+})();
+</script>
+</body>
+</html>
