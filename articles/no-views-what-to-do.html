@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="baidu_union_verify" content="59880226db9af1b394e9bdac41a6b4d7">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>小红书笔记没流量怎么办？10项自查清单（2026）</title>
+<meta name="description" content="小红书笔记浏览量个位数？按这份10项自查清单排查：是否被限流、违规词检测、封面标题问题、账号标签混乱，逐项对照找到病根。">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="canonical" href="https://frank-star112.github.io/articles/no-views-what-to-do.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="爆款铺">
+<meta property="og:title" content="小红书笔记没流量怎么办？10项自查清单（2026）">
+<meta property="og:description" content="小红书笔记浏览量个位数？按这份10项自查清单排查：是否被限流、违规词检测、封面标题问题、账号标签混乱，逐项对照找到病根。">
+<meta property="og:url" content="https://frank-star112.github.io/articles/no-views-what-to-do.html">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #fbf7f8; --card: #ffffff; --border: #f0e6e9;
+    --text: #1c1b22; --text-dim: #6f6a76; --text-mute: #ab9aa3;
+    --accent: #ff2e63; --accent-2: #ff7a3d;
+    --grad: linear-gradient(135deg, #ff2e63 0%, #ff7a3d 100%);
+    --grad-soft: linear-gradient(135deg, rgba(255,46,99,0.08) 0%, rgba(255,122,61,0.08) 100%);
+    --radius: 18px; --shadow: 0 8px 30px rgba(255,46,99,0.08); --shadow-hover: 0 14px 40px rgba(255,46,99,0.16);
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; overflow-x: hidden; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
+  header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.86); backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--border); }
+  .nav { display: flex; align-items: center; gap: 12px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+  .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 15px; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.3); }
+  .nav-scroll { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex: 1; min-width: 0; padding: 2px 0; }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-scroll a { color: var(--text-dim); text-decoration: none; font-size: 12.5px; padding: 7px 13px; border-radius: 999px; transition: all .2s; white-space: nowrap; border: 1px solid transparent; }
+  .nav-scroll a.cur { color: #fff; background: var(--grad); font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+  .nav-scroll a:not(.cur):hover { background: rgba(255,46,99,0.07); }
+
+  .hero { position: relative; padding: 40px 0 16px; text-align: center; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0; }
+  .hero::before { width: 210px; height: 210px; background: radial-gradient(circle, #ffd0dd, transparent 70%); top: -50px; left: -40px; }
+  .hero::after { width: 230px; height: 230px; background: radial-gradient(circle, #ffe0c7, transparent 70%); top: -30px; right: -60px; }
+  .hero > * { position: relative; z-index: 1; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(255,46,99,0.08); padding: 6px 14px; border-radius: 999px; margin-bottom: 14px; }
+  .hero h1 { font-size: 27px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.3; }
+  .hero h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .meta { color: var(--text-mute); font-size: 13px; margin-top: 10px; }
+
+  .article { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 22px; box-shadow: var(--shadow); margin-top: 16px; }
+  .article h2 { font-size: 20px; font-weight: 800; margin: 26px 0 10px; }
+  .article h3 { font-size: 16px; font-weight: 700; margin: 16px 0 8px; color: var(--accent-2); }
+  .article p { color: var(--text-dim); margin-bottom: 12px; font-size: 15px; }
+  .article ul, .article ol { margin: 0 0 12px 20px; color: var(--text-dim); font-size: 15px; }
+  .article li { margin-bottom: 6px; }
+  .article .lead { font-size: 15.5px; color: var(--text); font-weight: 500; }
+  .article .tip { background: rgba(255,46,99,0.05); border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 0 8px 8px 0; margin: 14px 0; font-size: 14px; color: var(--text-dim); }
+  .article code { background: #fdfafb; border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; font-size: 13.5px; color: var(--accent); }
+  .article .stat { display: flex; gap: 12px; margin: 14px 0; flex-wrap: wrap; }
+  .article .stat .s { flex: 1; min-width: 140px; background: var(--grad-soft); border-radius: 12px; padding: 14px; text-align: center; }
+  .article .stat .s b { font-size: 22px; color: var(--accent); display: block; }
+  .article .stat .s span { font-size: 12.5px; color: var(--text-dim); }
+
+  .cta-box { margin-top: 24px; background: rgba(255,46,99,0.06); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+  .cta-box .t { font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+  .cta-box .s { color: var(--text-dim); font-size: 13.5px; margin-bottom: 14px; }
+  .cta-box a { display: inline-block; margin: 5px; padding: 11px 18px; background: var(--grad); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
+
+
+  .share-card { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
+  .share-card h3 { font-size: 17px; font-weight: 800; }
+  .share-card .sub { color: var(--text-mute); font-size: 13px; margin: 7px 0 18px; }
+  .share-body { display: flex; align-items: center; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .share-card .qr { width: 132px; height: 132px; border-radius: 12px; border: 1px solid var(--border); }
+  .share-side { text-align: left; }
+  .link-box { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; max-width: 230px; word-break: break-all; margin-bottom: 10px; }
+  .copy-link { background: var(--grad); color: #fff; border: none; border-radius: 9px; padding: 11px 20px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(255,46,99,0.25); transition: transform .12s; }
+  .copy-link:active { transform: scale(0.97); }
+
+  footer { margin-top: 40px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
+  footer .heart { color: var(--accent); }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px; font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  @media (max-width: 640px){ .hero h1 { font-size: 24px; } .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
+  .next { margin-top: 30px; }
+  .next h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+  .next-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; text-decoration: none; color: var(--text); margin-bottom: 9px; transition: all .18s; }
+  .next-item:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+  .next-ico { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; flex-shrink: 0; }
+  .next-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .next-txt b { font-size: 14px; font-weight: 700; }
+  .next-txt i { font-style: normal; font-size: 12.5px; color: var(--text-dim); }
+  .next-go { color: var(--text-mute); font-size: 16px; flex-shrink: 0; }
+</style>
+<meta name="theme-color" content="#ff2e63">
+<meta property="og:image" content="https://frank-star112.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://frank-star112.github.io/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"小红书笔记没流量怎么办？10项自查清单（2026）","url":"https://frank-star112.github.io/articles/no-views-what-to-do.html","inLanguage":"zh-CN","image":"https://frank-star112.github.io/og-image.png","datePublished":"2026-07-28","dateModified":"2026-07-28","author":{"@type":"Organization","name":"爆款铺"},"publisher":{"@type":"Organization","name":"爆款铺","url":"https://frank-star112.github.io/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://frank-star112.github.io/"},{"@type":"ListItem","position":2,"name":"创作干货","item":"https://frank-star112.github.io/articles/index.html"},{"@type":"ListItem","position":3,"name":"小红书笔记没流量怎么办？10项自查清单（2026）","item":"https://frank-star112.github.io/articles/no-views-what-to-do.html"}]}</script>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><div class="dot">爆</div>爆款铺</div>
+    <nav class="nav-scroll">
+      <a href="../index.html">标题</a>
+      <a href="../topics.html">选题</a>
+      <a href="../script.html">脚本</a>
+      <a href="../cover.html">封面</a>
+      <a href="../copywriter.html">文案</a>
+      <a href="../hashtag.html">标签</a>
+      <a href="../bio.html">简介</a>
+      <a href="index.html" class="cur">文章</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="badge">🔍 流量自查</span>
+    <h1>笔记<span class="g">没流量</span>？10项自查清单</h1>
+    <div class="meta">阅读约 5 分钟 · 2026 排查版</div>
+  </section>
+
+  <article class="article">
+    <p class="lead">笔记发出去浏览量停在两位数，最难受的是不知道问题出在哪。这份清单按「先查违规、再查内容、最后查账号」的顺序排查，逐项对照，基本都能找到病根。</p>
+
+    <div class="stat">
+      <div class="s"><b>10 项</b><span>逐条排查</span></div>
+      <div class="s"><b>3 类</b><span>违规 / 内容 / 账号</span></div>
+      <div class="s"><b>80%</b><span>问题出在前5项</span></div>
+    </div>
+
+    <h2>一、先排除违规限流（第1-4项）</h2>
+    <ol>
+      <li><b>自查是否被屏蔽</b>：用小号或朋友的号搜你的笔记关键词，翻不到你的笔记但主页能看到 = 大概率被限流；</li>
+      <li><b>违规词排查</b>：「最」「第一」「治愈」「变白」等极限词和医疗功效词是重灾区，广告法词汇会被直接压流量；</li>
+      <li><b>引流痕迹</b>：正文或图片里有微信号、二维码、其他平台水印（抖音号、公众号名），都是压流量的硬伤；</li>
+      <li><b>搬运判定</b>：图片带别人水印、视频有其他平台logo、文案全网复制——原创度过低直接不推荐。</li>
+    </ol>
+
+    <h2>二、再查内容本身（第5-8项）</h2>
+    <ol start="5">
+      <li><b>封面能打吗</b>：把你的封面和同赛道爆款放一起对比，缩小到信息流大小看——字看不清、图没重点就是不合格；</li>
+      <li><b>标题有搜索词吗</b>：标题里没有用户会搜的词（如「减脂早餐」「新手化妆」），搜索流量为零，只能靠推荐硬扛；</li>
+      <li><b>标签打对了吗</b>：没打主题标签、或标签和内容错位，算法不知道推给谁；</li>
+      <li><b>开头3秒/3行留人吗</b>：视频前3秒没钩子、图文前3行没痛点，完读率低，第一池就出局。</li>
+    </ol>
+
+    <h2>三、最后查账号（第9-10项）</h2>
+    <ol start="9">
+      <li><b>账号标签乱吗</b>：今天发美食明天发穿搭后天发情感——账号没有清晰标签，每篇笔记都在冷启动；</li>
+      <li><b>发布频率断崖吗</b>：断更一个月再发，账号活跃权重掉了，前几篇数据差是正常的，连续更新一两周会回来。</li>
+    </ol>
+
+    <div class="tip">排查完还是找不到问题？试试「同内容重发测试」：把笔记换个封面和标题重新发（原笔记设为仅自己可见），如果数据明显变好，说明就是封面标题的锅；如果依旧扑，大概率是账号权重问题，按第9-10项养一段时间。</div>
+
+    <h2>四、恢复流量的行动顺序</h2>
+    <ul>
+      <li>有违规嫌疑 → 删改违规元素，或申诉（创作中心-帮助与客服）；</li>
+      <li>内容问题 → 优先改封面标题（点击率权重最高），再优化开头；</li>
+      <li>账号问题 → 固定赛道连续更新2周，用数据把标签养回来。</li>
+    </ul>
+
+    <div class="cta-box">
+      <div class="t">封面标题是80%问题的答案</div>
+      <div class="s">自查完动手改，工具一键重做</div>
+      <a href="../index.html">重写标题</a>
+      <a href="../cover.html">重做封面文案</a>
+      <a href="../hashtag.html">重打标签</a>
+    </div>
+  </article>
+
+  <div class="next">
+    <h3>🔧 学完就用</h3>
+    <a class="next-item" href="../index.html"><span class="next-ico" style="background:#ffe3ec;color:#ff2e63">题</span><span class="next-txt"><b>爆款标题生成器</b><i>80%的流量问题从标题改起</i></span><span class="next-go">→</span></a>
+    <a class="next-item" href="how-to-get-hot.html"><span class="next-ico" style="background:#ffe9dd;color:#e85f1e">干</span><span class="next-txt"><b>小红书怎么上热门？</b><i>搞懂机制才知道哪里扣了分</i></span><span class="next-go">→</span></a>
+    <a class="next-item" href="comment-section-tips.html"><span class="next-ico" style="background:#ffe3ec;color:#ff2e63">干</span><span class="next-txt"><b>评论区怎么运营？</b><i>流量回来后把互动做上去</i></span><span class="next-go">→</span></a>
+  </div>
+
+  <div class="share-card">
+    <h3>📲 分享给朋友</h3>
+    <p class="sub">扫码或复制链接，发到微信群 / 朋友圈，朋友一键打开</p>
+    <div class="share-body">
+      <img class="qr" src="../baokanpu_qr.png" alt="爆款铺二维码" />
+      <div class="share-side">
+        <div class="link-box" id="linkBox"></div>
+        <button class="copy-link" id="copyLinkBtn">复制链接</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>爆款铺 · 创作者的免费工具站 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
+<div class="toast" id="toast">已复制</div>
+
+<script>
+function copyText(text){ if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(()=>toast('已复制')).catch(()=>fb(text)); } else fb(text); }
+function fb(text){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.top='-9999px'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{ document.execCommand('copy'); toast('已复制'); }catch(e){ toast('请长按手动复制'); } document.body.removeChild(ta); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); }
+const copyLinkBtn = document.getElementById('copyLinkBtn');
+if (copyLinkBtn) {
+  document.getElementById('linkBox').textContent = location.href;
+  copyLinkBtn.addEventListener('click', function(){
+    copyText(location.href);
+    this.textContent = '✓ 已复制';
+    const b = this;
+    setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
+  });
+}
+</script>
+</body>
+</html>
