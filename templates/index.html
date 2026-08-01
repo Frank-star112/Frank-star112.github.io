@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100个小红书爆款标题模板 · 免费领</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #faf7f2; color: #222; line-height: 1.6;
+    padding: 28px 16px 60px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 26px; }
+  header h1 { font-size: 25px; color: #FF2442; letter-spacing: 1px; }
+  header p { color: #888; font-size: 14px; margin-top: 8px; }
+  .grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  figure {
+    background: #fff; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    transition: transform .15s ease;
+  }
+  figure:hover { transform: translateY(-3px); }
+  figure img { width: 100%; display: block; background: #f3efe9; }
+  figcaption {
+    text-align: center; font-size: 13px; color: #555;
+    padding: 9px 4px; border-top: 1px solid #f0ece6;
+  }
+  .cover { grid-column: 1 / -1; }
+  .cover figcaption { color: #FF2442; font-weight: 600; }
+  .tip {
+    background: #fff4f5; border: 1px solid #ffd5da; border-radius: 12px;
+    padding: 15px 18px; margin-top: 24px; font-size: 13.5px; color: #a33;
+  }
+  .tip b { color: #FF2442; }
+  .cta {
+    display: block; text-align: center; margin: 22px auto 0;
+    background: #FF2442; color: #fff; text-decoration: none;
+    padding: 13px 0; border-radius: 30px; font-size: 16px; font-weight: 600;
+    max-width: 280px;
+  }
+  .cta:hover { opacity: .92; }
+  footer { text-align: center; color: #bbb; font-size: 12px; margin-top: 26px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🔥 100个小红书爆款标题模板</h1>
+    <p>8 大套路 · 100 个 · 直接套用 · 免费领全套</p>
+  </header>
+  <main class="grid" id="grid"></main>
+  <a class="cta" href="/">去用标题生成器 →</a>
+  <div class="tip">
+    💡 想要 <b>可复制的文字版</b>（不用存图）？回到工具站首页下载 PDF 版即可。
+    评论扣「模板」也能领，关注后不定期更新更多套路～
+  </div>
+  <footer>由 AI 标题生成器出品 · 免费使用</footer>
+</div>
+<script>
+  const items = [
+    { n: "tpl_cover", label: "封面 / 总览", cover: true },
+    { n: "tpl_01", label: "数字型" },
+    { n: "tpl_02", label: "情绪型" },
+    { n: "tpl_03", label: "悬念型" },
+    { n: "tpl_04", label: "身份型" },
+    { n: "tpl_05", label: "合集型" },
+    { n: "tpl_06", label: "避坑型" },
+    { n: "tpl_07", label: "反差型" },
+    { n: "tpl_08", label: "万能公式" },
+  ];
+  const grid = document.getElementById("grid");
+  grid.innerHTML = items
+    .map(
+      (it) =>
+        `<figure class="${it.cover ? "cover" : ""}">
+          <img src="${it.n}.png" alt="${it.label}" loading="lazy">
+          <figcaption>${it.label}</figcaption>
+        </figure>`
+    )
+    .join("");
+</script>
+</body>
+</html>
