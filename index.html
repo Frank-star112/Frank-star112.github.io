@@ -180,6 +180,12 @@
   .copy-link:active { transform: scale(0.97); }
   @media (max-width: 640px){ .card { padding: 18px; } .btn-row { flex-direction: column; gap: 9px; } button.gen { padding: 17px; font-size: 17px; } .title-card .t { font-size: 14.5px; } .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
 
+  .tpl-cta { display: flex; align-items: center; gap: 14px; background: var(--grad-soft); border: 1.5px solid rgba(255,46,99,0.18); border-radius: var(--radius); padding: 16px 18px; text-decoration: none; color: var(--text); margin: 18px 0 4px; transition: all .2s; }
+  .tpl-cta:active { transform: scale(0.99); }
+  .tpl-cta-emoji { width: 46px; height: 46px; border-radius: 13px; background: var(--grad); display: grid; place-items: center; font-size: 24px; box-shadow: 0 6px 16px rgba(255,46,99,0.3); flex-shrink: 0; }
+  .tpl-cta-title { font-size: 15.5px; font-weight: 800; }
+  .tpl-cta-sub { font-size: 12.5px; color: var(--text-dim); margin-top: 3px; }
+
   .faq { margin-top: 30px; }
   .faq > h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
   .faq details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 9px; overflow: hidden; }
@@ -212,6 +218,7 @@
       <a href="hashtag.html">标签</a>
       <a href="bio.html">简介</a>
       <a href="articles/index.html">文章</a>
+      <a href="templates/">📋 模板</a>
     </nav>
   </div>
 </header>
@@ -222,6 +229,14 @@
     <h1>小红书<span class="g">爆款标题</span>生成器</h1>
     <p>输入你的主题，一键生成 20+ 吸睛标题。覆盖干货、种草、避雷、情绪、教程五大风格，直接复制就能用。</p>
   </section>
+
+  <a class="tpl-cta" href="templates/">
+    <div class="tpl-cta-emoji">📋</div>
+    <div class="tpl-cta-text">
+      <div class="tpl-cta-title">免费领 · 100 个爆款标题模板</div>
+      <div class="tpl-cta-sub">按 8 大套路分类，带填空位，直接套就能用 →</div>
+    </div>
+  </a>
 
   <div class="card">
     <div class="field-label"><span class="ico">✍️</span>你的主题 / 关键词</div>
