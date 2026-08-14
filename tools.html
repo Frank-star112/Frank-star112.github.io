@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 工具箱 · 创作百宝箱</title>
+<meta name="description" content="按场景分类的 AI 创作工具导航：AI写作、AI绘图、AI视频、AI配音、剪辑、自媒体辅助，精选主流工具直达。">
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">创作<span>百宝箱</span></div>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="tools.html" class="active">工具箱</a>
+      <a href="resources.html">资源</a>
+      <a href="guides.html">教程</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section wrap">
+  <h2>AI 工具箱</h2>
+  <p class="sub">按场景挑工具，点「去使用」直达。链接含联盟标识，注册/付费可支持本站。</p>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">创作百宝箱 CreatorBox · 工具链接为联盟推广，感谢支持</div>
+</footer>
+
+<script src="assets/tools-data.js"></script>
+<script>
+(function () {
+  const grid = document.getElementById("grid");
+  const filters = document.getElementById("filters");
+  let cur = "all";
+
+  function renderFilters() {
+    filters.innerHTML = CATS.map(c =>
+      `<span class="chip ${c.id === cur ? "active" : ""}" data-id="${c.id}">${c.label}</span>`
+    ).join("");
+    filters.querySelectorAll(".chip").forEach(el => {
+      el.onclick = () => { cur = el.dataset.id; renderFilters(); renderGrid(); };
+    });
+  }
+
+  function renderGrid() {
+    const list = cur === "all" ? TOOLS : TOOLS.filter(t => t.cat === cur);
+    grid.innerHTML = list.map(t => {
+      const catLabel = (CATS.find(c => c.id === t.cat) || {}).label || "";
+      const initial = t.name.trim().charAt(0);
+      return `<div class="tool">
+        <div class="top">
+          <div class="avatar">${initial}</div>
+          <div><h3>${t.name}</h3><div class="cat">${catLabel}</div></div>
+        </div>
+        <p>${t.desc}</p>
+        <div class="scene">适用：${t.scene}</div>
+        <a class="go" href="${t.url}" target="_blank" rel="nofollow">去使用 →</a>
+      </div>`;
+    }).join("");
+  }
+
+  renderFilters();
+  renderGrid();
+})();
+</script>
+</body>
+</html>
