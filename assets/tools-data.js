@@ -1,6 +1,5 @@
-// 工具清单数据。url 默认填官方首页（可直接跳转）。
-// 想赚联盟佣金时，把带 ★ 标记的工具 url 换成你自己的邀请/推广链接即可：
-//   ChatGPT/Claude/DeepSeek/Midjourney/即梦/可灵/剪映/CapCut/ElevenLabs/魔音工坊/新红/灰豚/5118 等多数都有推广计划。
+// 工具清单数据。url 为各工具官方首页，点「去使用」直达。
+// 变现（联盟/邀请链接）以后再加，到时统一在 assets/affiliate.js 配置。
 // 分类: writing(写作) drawing(绘图) video(视频) voice(配音) edit(剪辑) assist(自媒体辅助)
 const TOOLS = [
   // ---- AI 写作 ----
