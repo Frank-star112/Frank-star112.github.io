@@ -22,13 +22,13 @@
 
 <section class="section wrap">
   <h2>AI 工具箱</h2>
-  <p class="sub">按场景挑工具，点「去使用」直达官网。想赚佣金，把带 ★ 的工具换成你的联盟邀请链接即可。</p>
+  <p class="sub">按场景挑工具，点「去使用」直达官网。每个工具都跳官方页面，放心用。</p>
   <div class="filters" id="filters"></div>
   <div class="grid" id="grid"></div>
 </section>
 
 <footer class="footer">
-  <div class="wrap">创作百宝箱 CreatorBox · 工具链接默认官方直达；把带 ★ 标记的工具换成你的联盟邀请链接即可赚佣金</div>
+  <div class="wrap">创作百宝箱 CreatorBox · 工具链接均为官方直达，放心点击使用</div>
 </footer>
 
 <script src="assets/tools-data.js"></script>
@@ -52,6 +52,7 @@
     grid.innerHTML = list.map(t => {
       const catLabel = (CATS.find(c => c.id === t.cat) || {}).label || "";
       const initial = t.name.trim().charAt(0);
+      const url = t.url;
       return `<div class="tool">
         <div class="top">
           <div class="avatar">${initial}</div>
@@ -59,7 +60,7 @@
         </div>
         <p>${t.desc}</p>
         <div class="scene">适用：${t.scene}</div>
-        <a class="go" href="${t.url}" target="_blank" rel="nofollow">去使用 →</a>
+        <a class="go" href="${url}" target="_blank" rel="nofollow">去使用 →</a>
       </div>`;
     }).join("");
   }
