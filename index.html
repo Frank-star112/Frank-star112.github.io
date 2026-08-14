@@ -2,565 +2,67 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>爆款铺 · 小红书爆款标题生成器｜创作者免费工具站</title>
-<meta name="description" content="爆款铺是小红书创作者的免费工具站：爆款标题生成器、选题灵感库、视频脚本、封面文案、正文文案、话题标签、账号简介，一站式搞定内容创作。">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="canonical" href="https://frank-star112.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="爆款铺">
-<meta property="og:title" content="爆款铺 · 小红书爆款标题生成器｜创作者免费工具站">
-<meta property="og:description" content="爆款铺是小红书创作者的免费工具站：爆款标题生成器、选题灵感库、视频脚本、封面文案、正文文案、话题标签、账号简介，一站式搞定内容创作。">
-<meta property="og:url" content="https://frank-star112.github.io/">
-<meta name="keywords" content="小红书标题生成器,爆款标题,小红书选题,视频脚本,封面文案,文案生成器">
-<meta name="baidu_union_verify" content="59880226db9af1b394e9bdac41a6b4d7">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  :root {
-    --bg: #fbf7f8;
-    --card: #ffffff;
-    --border: #f0e6e9;
-    --text: #1c1b22;
-    --text-dim: #6f6a76;
-    --text-mute: #ab9aa3;
-    --accent: #ff2e63;
-    --accent-2: #ff7a3d;
-    --grad: linear-gradient(135deg, #ff2e63 0%, #ff7a3d 100%);
-    --grad-soft: linear-gradient(135deg, rgba(255,46,99,0.08) 0%, rgba(255,122,61,0.08) 100%);
-    --radius: 18px;
-    --green: #20a779;
-    --shadow: 0 8px 30px rgba(255,46,99,0.08);
-    --shadow-hover: 0 14px 40px rgba(255,46,99,0.16);
-  }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: var(--bg); color: var(--text); line-height: 1.65; min-height: 100vh; overflow-x: hidden;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
-
-  /* ===== Header / 横向滚动导航 ===== */
-  header {
-    position: sticky; top: 0; z-index: 30;
-    background: rgba(255,255,255,0.86);
-    backdrop-filter: saturate(180%) blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav { display: flex; align-items: center; gap: 12px; height: 60px; }
-  .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 18px; letter-spacing: -0.3px; flex-shrink: 0; }
-  .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; font-size: 15px; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.3); }
-  .nav-scroll { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex: 1; min-width: 0; padding: 2px 0; }
-  .nav-scroll::-webkit-scrollbar { display: none; }
-  .nav-scroll a { color: var(--text-dim); text-decoration: none; font-size: 12.5px; padding: 7px 13px; border-radius: 999px; transition: all .2s; white-space: nowrap; border: 1px solid transparent; }
-  .nav-scroll a.cur { color: #fff; background: var(--grad); font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
-  .nav-scroll a:not(.cur):hover { background: rgba(255,46,99,0.07); }
-
-  /* ===== Hero ===== */
-  .hero { position: relative; padding: 46px 0 22px; text-align: center; overflow: hidden; }
-  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; z-index: 0; }
-  .hero::before { width: 240px; height: 240px; background: radial-gradient(circle, #ffd0dd, transparent 70%); top: -60px; left: -50px; }
-  .hero::after { width: 260px; height: 260px; background: radial-gradient(circle, #ffe0c7, transparent 70%); top: -40px; right: -70px; }
-  .hero > * { position: relative; z-index: 1; }
-  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); background: rgba(255,46,99,0.08); padding: 6px 14px; border-radius: 999px; margin-bottom: 16px; }
-  .hero h1 { font-size: 32px; font-weight: 900; letter-spacing: -1px; line-height: 1.2; }
-  .hero h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p { color: var(--text-dim); margin: 14px auto 0; font-size: 14.5px; max-width: 460px; }
-  @media (max-width: 640px){ .hero { padding: 32px 0 18px; } .hero h1 { font-size: 25px; } }
-
-  /* ===== 工具网格 ===== */
-  .section-h { font-size: 16px; font-weight: 800; margin: 30px 0 14px; display: flex; align-items: center; gap: 8px; }
-  .section-h .em { font-size: 18px; }
-  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 460px){ .tool-grid { grid-template-columns: 1fr; } }
-  .tool-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px;
-    text-decoration: none; color: var(--text); transition: all .2s; display: flex; flex-direction: column; gap: 7px;
-    animation: fade .4s ease backwards; position: relative; overflow: hidden;
-  }
-  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .tool-card:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
-  .tool-card .ti { width: 42px; height: 42px; border-radius: 12px; background: var(--grad-soft); display: grid; place-items: center; font-size: 21px; }
-  .tool-card .tt { font-size: 15px; font-weight: 800; }
-  .tool-card .td { font-size: 12.5px; color: var(--text-dim); line-height: 1.45; }
-  .tool-card .ta { font-size: 12px; color: var(--accent-2); font-weight: 700; margin-top: auto; }
-
-  /* ===== Card ===== */
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); position: relative; }
-  .field-label { font-size: 13px; color: var(--text-dim); margin-bottom: 9px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
-  .field-label .ico { font-size: 14px; }
-  input.kw { width: 100%; -webkit-appearance: none; background: #fdfafb; border: 1.5px solid var(--border); border-radius: 13px; padding: 15px 17px; color: var(--text); font-size: 16px; outline: none; transition: border-color .2s, box-shadow .2s; }
-  input.kw:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255,46,99,0.1); }
-  input.kw::placeholder { color: var(--text-mute); }
-  .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-  .examples .ex { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px dashed var(--border); padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: all .18s; }
-  .examples .ex:active { background: rgba(255,46,99,0.08); color: var(--accent); border-color: var(--accent); }
-  .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 4px; }
-  .chip { padding: 9px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; background: #fdfafb; border: 1.5px solid var(--border); color: var(--text-dim); cursor: pointer; user-select: none; transition: all .18s; }
-  .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 700; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
-  .count-row { display: flex; gap: 9px; margin-top: 4px; }
-  .seg { flex: 1; text-align: center; padding: 11px; border-radius: 12px; font-size: 14px; font-weight: 600; background: #fdfafb; border: 1.5px solid var(--border); color: var(--text-dim); cursor: pointer; transition: all .18s; }
-  .seg.active { background: var(--grad); border-color: transparent; color: #fff; box-shadow: 0 4px 12px rgba(255,46,99,0.25); }
-  .btn-row { display: flex; gap: 10px; margin-top: 20px; }
-  button.gen { flex: 1; background: var(--grad); color: #fff; border: none; border-radius: 13px; padding: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 22px rgba(255,46,99,0.3); transition: transform .12s, box-shadow .2s; }
-  button.gen:active { transform: translateY(1px) scale(0.99); box-shadow: 0 4px 14px rgba(255,46,99,0.28); }
-  button.ghost { background: #fdfafb; color: var(--text-dim); border: 1.5px solid var(--border); border-radius: 13px; padding: 16px 18px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .18s; }
-  button.ghost:disabled { opacity: .4; }
-  button.ghost:not(:disabled):active { background: rgba(255,46,99,0.06); }
-
-  /* ===== Results ===== */
-  .results { margin-top: 26px; }
-  .results-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .results-head h2 { font-size: 17px; font-weight: 800; }
-  .results-head .count { color: var(--text-mute); font-size: 13px; }
-  .results-head .copy-all { margin-left: auto; padding: 8px 14px; font-size: 12.5px; border-radius: 9px; border: 1.5px solid var(--border); background: #fdfafb; color: var(--accent); font-weight: 600; cursor: pointer; transition: all .18s; }
-  .results-head .copy-all:active { background: rgba(255,46,99,0.08); }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 640px){ .grid { grid-template-columns: 1fr; } }
-  .title-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 15px 14px; position: relative; transition: transform .18s, box-shadow .18s, border-color .18s; animation: pop .38s cubic-bezier(.2,.8,.2,1) backwards; }
-  @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
-  .title-card:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-  .title-card .t { font-size: 15px; line-height: 1.5; padding-right: 66px; font-weight: 500; }
-  .title-card .tag { display: inline-block; font-size: 11px; color: var(--accent-2); margin-top: 9px; padding: 3px 9px; background: rgba(255,122,61,0.1); border-radius: 6px; font-weight: 600; }
-  .icon-btn { position: absolute; top: 11px; width: 32px; height: 32px; border-radius: 9px; border: none; background: #fdfafb; color: var(--text-dim); cursor: pointer; display: grid; place-items: center; font-size: 15px; transition: all .15s; }
-  .copy-btn { right: 11px; }
-  .copy-btn:active { background: var(--accent); color: #fff; }
-  .fav-btn { right: 49px; }
-  .fav-btn:active { background: rgba(255,46,99,0.12); }
-  .fav-btn.fav-on { color: #ff4d6a; background: rgba(255,77,106,0.12); }
-  .empty { text-align: center; color: var(--text-mute); padding: 50px 0; font-size: 14px; }
-  .empty .big { font-size: 40px; display: block; margin-bottom: 12px; }
-
-  /* ===== 精选文章 ===== */
-  .posts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 640px){ .posts { grid-template-columns: 1fr; } }
-  .post { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 17px 18px; text-decoration: none; color: var(--text); transition: all .18s; animation: fade .4s ease backwards; }
-  .post:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-  .post .pt { font-size: 15.5px; font-weight: 800; line-height: 1.4; }
-  .post .pd { color: var(--text-dim); font-size: 12.5px; margin-top: 6px; line-height: 1.5; }
-  .post .pc { display: inline-block; margin-top: 10px; font-size: 11.5px; font-weight: 700; color: var(--accent-2); background: rgba(255,122,61,0.1); padding: 3px 10px; border-radius: 6px; }
-
-  /* ===== Footer / More ===== */
-  footer { margin-top: 46px; padding: 26px 0 38px; color: var(--text-mute); font-size: 12px; text-align: center; }
-  footer .heart { color: var(--accent); }
-
-  /* ===== Toast ===== */
-  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1b22; color: #fff; padding: 12px 22px; border-radius: 12px; font-size: 14px; opacity: 0; transition: all .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; z-index: 60; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-  /* ===== Fav drawer ===== */
-  .fav-fab { position: fixed; right: 18px; bottom: 22px; z-index: 40; background: var(--grad); color: #fff; border: none; border-radius: 999px; padding: 13px 19px; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 24px rgba(255,46,99,0.4); display: flex; align-items: center; gap: 7px; }
-  .fav-fab .cnt { background: #fff; color: var(--accent); border-radius: 999px; min-width: 20px; height: 20px; padding: 0 6px; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
-  .sheet-mask { position: fixed; inset: 0; background: rgba(20,18,24,0.45); z-index: 50; opacity: 0; pointer-events: none; transition: opacity .25s; backdrop-filter: blur(2px); }
-  .sheet-mask.open { opacity: 1; pointer-events: auto; }
-  .sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 51; background: #fff; border-radius: 22px 22px 0 0; padding: 22px 18px calc(22px + env(safe-area-inset-bottom)); transform: translateY(100%); transition: transform .32s cubic-bezier(.2,.8,.2,1); max-height: 78vh; overflow-y: auto; box-shadow: 0 -10px 40px rgba(0,0,0,0.18); }
-  .sheet.open { transform: translateY(0); }
-  .sheet .handle { width: 40px; height: 4px; background: #e4dde0; border-radius: 999px; margin: 0 auto 16px; }
-  .sheet h3 { font-size: 17px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-  .sheet .sub { color: var(--text-mute); font-size: 12.5px; margin-bottom: 14px; }
-  .fav-item { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: #fdfafb; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; }
-  .fav-item .ft { flex: 1; font-size: 14px; color: var(--text); line-height: 1.45; }
-  .fav-item .ftag { display: inline-block; font-size: 10.5px; color: var(--accent-2); background: rgba(255,122,61,0.1); padding: 2px 7px; border-radius: 5px; margin-right: 6px; }
-  .fav-item button { border: 1.5px solid var(--border); background: #fff; border-radius: 8px; padding: 7px 11px; font-size: 12.5px; cursor: pointer; color: var(--text-dim); font-weight: 600; }
-  .fav-item .del { color: var(--accent); border-color: rgba(255,46,99,0.25); }
-  .fav-empty { text-align: center; color: var(--text-mute); padding: 36px 0; font-size: 14px; }
-  .fav-actions { display: flex; gap: 10px; margin-top: 6px; }
-  .fav-actions button { flex: 1; padding: 13px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; }
-  .fav-actions .copy { background: var(--grad); color: #fff; box-shadow: 0 6px 18px rgba(255,46,99,0.3); }
-  .fav-actions .clear { background: #fdfafb; color: var(--text-dim); border: 1.5px solid var(--border); }
-
-  /* share card */
-  .share-card { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); text-align: center; }
-  .share-card h3 { font-size: 17px; font-weight: 800; }
-  .share-card .sub { color: var(--text-mute); font-size: 13px; margin: 7px 0 18px; }
-  .share-body { display: flex; align-items: center; gap: 20px; justify-content: center; flex-wrap: wrap; }
-  .share-card .qr { width: 132px; height: 132px; border-radius: 12px; border: 1px solid var(--border); }
-  .share-side { text-align: left; }
-  .link-box { font-size: 12.5px; color: var(--text-dim); background: #fdfafb; border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; max-width: 230px; word-break: break-all; margin-bottom: 10px; }
-  .copy-link { background: var(--grad); color: #fff; border: none; border-radius: 9px; padding: 11px 20px; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(255,46,99,0.25); transition: transform .12s; }
-  .copy-link:active { transform: scale(0.97); }
-  @media (max-width: 640px){ .card { padding: 18px; } .btn-row { flex-direction: column; gap: 9px; } button.gen { padding: 17px; font-size: 17px; } .title-card .t { font-size: 14.5px; } .share-body { flex-direction: column; } .share-side { text-align: center; } .link-box { max-width: 100%; } }
-
-  .tpl-cta { display: flex; align-items: center; gap: 14px; background: var(--grad-soft); border: 1.5px solid rgba(255,46,99,0.18); border-radius: var(--radius); padding: 16px 18px; text-decoration: none; color: var(--text); margin: 18px 0 4px; transition: all .2s; }
-  .tpl-cta:active { transform: scale(0.99); }
-  .tpl-cta-emoji { width: 46px; height: 46px; border-radius: 13px; background: var(--grad); display: grid; place-items: center; font-size: 24px; box-shadow: 0 6px 16px rgba(255,46,99,0.3); flex-shrink: 0; }
-  .tpl-cta-title { font-size: 15.5px; font-weight: 800; }
-  .tpl-cta-sub { font-size: 12.5px; color: var(--text-dim); margin-top: 3px; }
-
-  .faq { margin-top: 30px; }
-  .faq > h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
-  .faq details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 9px; overflow: hidden; }
-  .faq summary { padding: 13px 15px; font-size: 14px; font-weight: 700; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::before { content: "Q"; width: 22px; height: 22px; border-radius: 7px; background: var(--grad-soft); color: var(--accent); font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .faq details[open] summary { border-bottom: 1px dashed var(--border); }
-  .faq .a { padding: 11px 15px 13px; font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
-</style>
-<meta name="theme-color" content="#ff2e63">
-<meta property="og:image" content="https://frank-star112.github.io/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://frank-star112.github.io/og-image.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"小红书爆款标题生成器","url":"https://frank-star112.github.io/","description":"输入关键词，一键生成小红书爆款标题，40+公式免费用。","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"publisher":{"@type":"Organization","name":"爆款铺","url":"https://frank-star112.github.io/"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"爆款铺","url":"https://frank-star112.github.io/","description":"小红书创作者免费工具站：标题、选题、脚本、封面、文案、标签、简介一站式生成。"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"小红书爆款标题生成器","url":"https://frank-star112.github.io/"},{"@type":"ListItem","position":2,"name":"小红书选题灵感库","url":"https://frank-star112.github.io/topics.html"},{"@type":"ListItem","position":3,"name":"小红书视频脚本生成器","url":"https://frank-star112.github.io/script.html"},{"@type":"ListItem","position":4,"name":"小红书封面文案生成器","url":"https://frank-star112.github.io/cover.html"},{"@type":"ListItem","position":5,"name":"小红书正文文案生成器","url":"https://frank-star112.github.io/copywriter.html"},{"@type":"ListItem","position":6,"name":"小红书话题标签生成器","url":"https://frank-star112.github.io/hashtag.html"},{"@type":"ListItem","position":7,"name":"小红书账号简介生成器","url":"https://frank-star112.github.io/bio.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"生成的标题可以直接用吗？","acceptedAnswer":{"@type":"Answer","text":"可以。生成结果基于 40+ 个经过验证的爆款公式，建议从中挑 1-2 个再结合你的内容微调，比如换成更贴合你笔记的数字或人群词，效果更好。"}},{"@type":"Question","name":"这个工具收费吗？要注册吗？","acceptedAnswer":{"@type":"Answer","text":"永久免费，无需注册登录，打开就能用，生成次数不限。"}},{"@type":"Question","name":"我输入的关键词会被保存吗？","acceptedAnswer":{"@type":"Answer","text":"不会。本站是纯前端工具，所有生成都在你的浏览器本地完成，没有服务器收集任何数据，收藏记录也只存在你自己的设备里。"}},{"@type":"Question","name":"为什么同一个词每次生成结果不一样？","acceptedAnswer":{"@type":"Answer","text":"工具会从公式库随机组合，就是为了每次都给你新灵感。看到顺眼的先点收藏，再点「换一批」继续挑。"}}]}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>创作百宝箱 CreatorBox · 自媒体人的 AI 工具与资源站</title>
+<meta name="description" content="面向自媒体人和创作者的 AI 工具导航、爆款模板资源与实战教程。写作、绘图、视频、配音、剪辑一键直达，用 AI 把内容效率拉满。">
 </head>
 <body>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">创作<span>百宝箱</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">首页</a>
+      <a href="tools.html">工具箱</a>
+      <a href="resources.html">资源</a>
+      <a href="guides.html">教程</a>
+    </div>
+  </div>
+</nav>
 
-<header>
-  <div class="wrap nav">
-    <div class="logo"><div class="dot">爆</div>爆款铺</div>
-    <nav class="nav-scroll">
-      <a href="index.html" class="cur">标题</a>
-      <a href="topics.html">选题</a>
-      <a href="script.html">脚本</a>
-      <a href="cover.html">封面</a>
-      <a href="copywriter.html">文案</a>
-      <a href="hashtag.html">标签</a>
-      <a href="bio.html">简介</a>
-      <a href="articles/index.html">文章</a>
-      <a href="templates/">📋 模板</a>
-    </nav>
+<header class="hero wrap">
+  <h1>做自媒体，<span class="hl">工具对了</span>，事半功倍</h1>
+  <p>精选 20+ 主流 AI 创作工具、100 个可直接抄的爆款模板、手把手实战教程。一个站，把你的内容效率拉满。</p>
+  <div class="cta">
+    <a href="tools.html" class="btn btn-primary">逛工具箱 →</a>
+    <a href="resources.html" class="btn btn-ghost">领免费模板</a>
   </div>
 </header>
 
-<div class="wrap">
-  <section class="hero">
-    <span class="badge">🔥 创作者都在用的免费工具站</span>
-    <h1>小红书<span class="g">爆款标题</span>生成器</h1>
-    <p>输入你的主题，一键生成 20+ 吸睛标题。覆盖干货、种草、避雷、情绪、教程五大风格，直接复制就能用。</p>
-  </section>
-
-  <a class="tpl-cta" href="templates/">
-    <div class="tpl-cta-emoji">📋</div>
-    <div class="tpl-cta-text">
-      <div class="tpl-cta-title">免费领 · 100 个爆款标题模板</div>
-      <div class="tpl-cta-sub">按 8 大套路分类，带填空位，直接套就能用 →</div>
-    </div>
-  </a>
-
-  <div class="card">
-    <div class="field-label"><span class="ico">✍️</span>你的主题 / 关键词</div>
-    <input class="kw" id="kw" placeholder="例如：减脂早餐 / 新手化妆 / 租房避坑" maxlength="30" />
-    <div class="examples" id="examples">
-      <span class="ex">减脂早餐</span>
-      <span class="ex">新手化妆</span>
-      <span class="ex">租房避坑</span>
-      <span class="ex">副业搞钱</span>
-      <span class="ex">通勤穿搭</span>
-    </div>
-
-    <div class="field-label" style="margin-top:18px"><span class="ico">🎨</span>选择风格（可多选）</div>
-    <div class="chips" id="chips">
-      <div class="chip active" data-style="干货">干货</div>
-      <div class="chip active" data-style="种草">种草</div>
-      <div class="chip active" data-style="避雷">避雷</div>
-      <div class="chip active" data-style="情绪">情绪共鸣</div>
-      <div class="chip active" data-style="教程">教程</div>
-    </div>
-
-    <div class="field-label" style="margin-top:18px"><span class="ico">🔢</span>生成数量</div>
-    <div class="count-row" id="countRow">
-      <div class="seg" data-count="10">10 条</div>
-      <div class="seg active" data-count="20">20 条</div>
-      <div class="seg" data-count="50">50 条</div>
-    </div>
-
-    <div class="btn-row">
-      <button class="gen" id="genBtn">✨ 生成爆款标题</button>
-      <button class="ghost" id="reshuffleBtn" disabled>换一批</button>
-    </div>
-  </div>
-
-  <div class="results">
-    <div class="results-head">
-      <h2>生成结果</h2>
-      <span class="count" id="count"></span>
-      <button class="copy-all" id="copyAllBtn" style="display:none">复制全部</button>
-    </div>
-    <div class="grid" id="grid">
-      <div class="empty" style="grid-column:1/-1"><span class="big">💡</span>输入主题，点生成，标题马上来</div>
-    </div>
-  </div>
-
-  <h2 class="section-h"><span class="em">🧰</span>全部免费工具</h2>
-  <div class="tool-grid">
-    <a class="tool-card" href="index.html" style="animation-delay:.02s">
-      <div class="ti">🔥</div><div class="tt">爆款标题生成器</div>
-      <div class="td">输入主题，一键生成 20+ 吸睛标题，五大风格任选。</div>
-      <div class="ta">立即使用 →</div>
+<section class="section wrap">
+  <div class="entries">
+    <a class="entry" href="tools.html">
+      <div class="ico">🧰</div>
+      <h3>AI 工具箱</h3>
+      <p>写作 / 绘图 / 视频 / 配音 / 剪辑，按场景分类收录，直达不绕路。</p>
     </a>
-    <a class="tool-card" href="topics.html" style="animation-delay:.06s">
-      <div class="ti">🧭</div><div class="tt">选题灵感库</div>
-      <div class="td">8 大赛道 80+ 爆款方向，点选题直接生成标题。</div>
-      <div class="ta">找灵感 →</div>
+    <a class="entry" href="resources.html">
+      <div class="ico">📋</div>
+      <h3>爆款资源</h3>
+      <p>100 个小红书爆款标题模板、封面与脚本模板，复制即用。</p>
     </a>
-    <a class="tool-card" href="script.html" style="animation-delay:.1s">
-      <div class="ti">🎬</div><div class="tt">视频脚本生成器</div>
-      <div class="td">口播 / 教程 / 种草 / 测评 / Vlog 大纲，含分镜。</div>
-      <div class="ta">写脚本 →</div>
-    </a>
-    <a class="tool-card" href="cover.html" style="animation-delay:.14s">
-      <div class="ti">🖼️</div><div class="tt">封面文案生成器</div>
-      <div class="td">大标题 + 副标题 + 标签，带渐变封面预览。</div>
-      <div class="ta">做封面 →</div>
-    </a>
-    <a class="tool-card" href="copywriter.html" style="animation-delay:.18s">
-      <div class="ti">✍️</div><div class="tt">正文文案生成器</div>
-      <div class="td">一键生成小红书笔记正文，开头钩子到金句齐全。</div>
-      <div class="ta">写正文 →</div>
-    </a>
-    <a class="tool-card" href="hashtag.html" style="animation-delay:.22s">
-      <div class="ti">#️⃣</div><div class="tt">话题标签生成器</div>
-      <div class="td">精准标签组合，大词 + 长尾 + 自造词，蹭满流量。</div>
-      <div class="ta">打标签 →</div>
-    </a>
-    <a class="tool-card" href="bio.html" style="animation-delay:.26s">
-      <div class="ti">👤</div><div class="tt">账号简介生成器</div>
-      <div class="td">人设简介 + 口号 + 标签，快速立住账号人设。</div>
-      <div class="ta">立人设 →</div>
-    </a>
-    <a class="tool-card" href="articles/index.html" style="animation-delay:.3s">
-      <div class="ti">📖</div><div class="tt">创作干货文章</div>
-      <div class="td">标题 / 选题 / 脚本 / 封面 / 涨粉，方法一次讲透。</div>
-      <div class="ta">学方法 →</div>
+    <a class="entry" href="guides.html">
+      <div class="ico">📚</div>
+      <h3>实战教程</h3>
+      <p>从选型到上手，帮你少走弯路、把工具用出效果。</p>
     </a>
   </div>
+</section>
 
-  <h2 class="section-h"><span class="em">📚</span>精选创作干货</h2>
-  <div class="posts">
-    <a class="post" href="articles/how-to-write-title.html" style="animation-delay:.05s">
-      <div class="pt">小红书标题怎么写？40 个爆款公式直接套</div>
-      <div class="pd">拆解干货 / 种草 / 避雷 / 情绪 / 教程五类标题公式，附点击率技巧。</div>
-      <span class="pc">标题写作</span>
-    </a>
-    <a class="post" href="articles/how-to-find-topics.html" style="animation-delay:.1s">
-      <div class="pt">小红书选题怎么找？8 大赛道 80+ 方向</div>
-      <div class="pd">成熟赛道清单 + 从评论区和热点挖真实需求的实操方法。</div>
-      <span class="pc">选题方法</span>
-    </a>
-    <a class="post" href="articles/how-to-write-script.html" style="animation-delay:.15s">
-      <div class="pt">小红书视频脚本怎么写？5 种类型模板</div>
-      <div class="pd">口播 / 教程 / 种草 / 测评 / Vlog 结构，含前 3 秒钩子。</div>
-      <span class="pc">脚本写作</span>
-    </a>
-    <a class="post" href="articles/how-to-grow-followers.html" style="animation-delay:.2s">
-      <div class="pt">小红书怎么涨粉？新手从 0 到 1000 实操</div>
-      <div class="pd">定位、更新频率、关键词布局、互动与工具提效全攻略。</div>
-      <span class="pc">涨粉实操</span>
-    </a>
+<section class="section wrap">
+  <h2>为什么用创作百宝箱</h2>
+  <p class="sub">不堆干货、不卖焦虑，只解决「下一个工具去哪找、怎么用」。</p>
+  <div class="entries">
+    <div class="entry"><div class="ico">⚡</div><h3>省时间</h3><p>工具按场景分类，不用再全网瞎找、反复试错。</p></div>
+    <div class="entry"><div class="ico">🎯</div><h3>能落地</h3><p>每个工具都标了适用场景，对着需求选就行。</p></div>
+    <div class="entry"><div class="ico">🆓</div><h3>有免费</h3><p>100 个爆款模板直接抄，资源区常更新。</p></div>
   </div>
+</section>
 
-  <div class="faq">
-  <h3>💬 常见问题</h3>
-  <details><summary>生成的标题可以直接用吗？</summary><div class="a">可以。生成结果基于 40+ 个经过验证的爆款公式，建议从中挑 1-2 个再结合你的内容微调，比如换成更贴合你笔记的数字或人群词，效果更好。</div></details><details><summary>这个工具收费吗？要注册吗？</summary><div class="a">永久免费，无需注册登录，打开就能用，生成次数不限。</div></details><details><summary>我输入的关键词会被保存吗？</summary><div class="a">不会。本站是纯前端工具，所有生成都在你的浏览器本地完成，没有服务器收集任何数据，收藏记录也只存在你自己的设备里。</div></details><details><summary>为什么同一个词每次生成结果不一样？</summary><div class="a">工具会从公式库随机组合，就是为了每次都给你新灵感。看到顺眼的先点收藏，再点「换一批」继续挑。</div></details>
-</div>
-
-  <div class="share-card">
-    <h3>📲 分享给朋友</h3>
-    <p class="sub">扫码或复制链接，发到微信群 / 朋友圈，朋友一键打开</p>
-    <div class="share-body">
-      <img class="qr" src="baokanpu_qr.png" alt="爆款铺二维码" />
-      <div class="share-side">
-        <div class="link-box" id="linkBox"></div>
-        <button class="copy-link" id="copyLinkBtn">复制链接</button>
-      </div>
-    </div>
+<footer class="footer">
+  <div class="wrap">
+    创作百宝箱 CreatorBox · 用 AI 把创作效率拉满<br>
+    部分工具链接为联盟推广，你的支持让本站持续免费更新 🙏
   </div>
-</div>
-
-<footer>爆款铺 · 创作者的免费工具站 · 由 <span class="heart">阿坎</span> 打造 · 永久免费</footer>
-
-<div class="fav-fab" id="favFab">❤️ 收藏 <span class="cnt" id="favCnt">0</span></div>
-<div class="sheet-mask" id="sheetMask"></div>
-<div class="sheet" id="sheet">
-  <div class="handle"></div>
-  <h3>❤️ 我的收藏</h3>
-  <div class="sub">长按喜欢的标题点 ♥ 就能收藏到这里，随时复制导出</div>
-  <div id="favList"></div>
-  <div class="fav-actions">
-    <button class="copy" id="favCopyAll">复制全部收藏</button>
-    <button class="clear" id="favClear">清空</button>
-  </div>
-</div>
-
-<div class="toast" id="toast">已复制</div>
-
-<script>
-const formulas = {
-  干货: [
-    "{kw}天花板！看完直接抄作业","一图看懂{kw}，小白也能上手","{kw}保姆级教程，建议收藏",
-    "{kw}进阶玩法，99%的人不知道","私藏{kw}清单，全网最全","{kw}这样做，效果直接翻倍",
-    "0基础{kw}，3步搞定","看完这篇{kw}，少走半年弯路"
-  ],
-  种草: [
-    "谁懂啊！{kw}原来这么香","被问爆的{kw}，终于找到了","{kw}神器！相见恨晚",
-    "00后都在用的{kw}，我悟了","{kw}天花板，闭眼入不踩雷","救命！{kw}也太绝了吧",
-    "囤了半年的{kw}，真心推荐","{kw}上岸，感谢自己没放弃"
-  ],
-  避雷: [
-    "别再踩坑！{kw}避雷指南","后悔没早知道！{kw}真相","{kw}避坑｜踩过才知道",
-    "答应我，{kw}前先看这个","{kw}的坑，我替你踩完了","别买错！{kw}选购避雷",
-    "{kw}翻车实录，引以为戒","90%的人{kw}都做错了"
-  ],
-  情绪: [
-    "月薪3k也能{kw}，亲测有效","{kw}7天打卡，结果惊了","后悔没早开始{kw}",
-    "{kw}复盘｜从0到1全过程","一个人{kw}的第30天","裸辞后靠{kw}，我活下来了",
-    "{kw}让我找回了状态","致每个想放弃{kw}的你"
-  ],
-  教程: [
-    "7天亲测｜{kw}保姆级教程","一键搞定{kw}，效率翻倍","{kw}新手指南，看这篇够了",
-    "{kw}从入门到精通","5分钟学会{kw}","{kw}实操演示，照做就行",
-    "{kw}标准化流程，可复制","手把手教{kw}，学不会算我的"
-  ]
-};
-const emojis = ["🔥","✨","💡","📌","🌟","💥","🎯","🚀"];
-const suffixes = ["｜建议收藏","｜亲测有效","｜建议点赞","｜全网最全","｜干货满满","｜建议反复看"];
-const pick = arr => arr[Math.floor(Math.random()*arr.length)];
-const $ = id => document.getElementById(id);
-const chips = document.querySelectorAll('.chip');
-
-chips.forEach(c => c.addEventListener('click', () => c.classList.toggle('active')));
-
-let maxCount = 20;
-document.querySelectorAll('#countRow .seg').forEach(seg => {
-  seg.addEventListener('click', () => {
-    document.querySelectorAll('#countRow .seg').forEach(s => s.classList.remove('active'));
-    seg.classList.add('active');
-    maxCount = parseInt(seg.dataset.count);
-  });
-});
-
-document.querySelectorAll('#examples .ex').forEach(ex => {
-  ex.addEventListener('click', () => { $('kw').value = ex.textContent; $('kw').focus(); });
-});
-
-const FAV_KEY = 'baokanpu_favorites';
-function getFavorites(){ try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch(e){ return []; } }
-function saveFavorites(f){ try { localStorage.setItem(FAV_KEY, JSON.stringify(f)); } catch(e){} }
-function isFavorite(t){ return getFavorites().some(f => f.text === t); }
-function toggleFavorite(text, tag){
-  let favs = getFavorites();
-  const i = favs.findIndex(f => f.text === text);
-  const added = i < 0;
-  if (added) favs.push({text, tag}); else favs.splice(i, 1);
-  saveFavorites(favs); updateFavUI(); return added;
-}
-function updateFavUI(){
-  const favs = getFavorites();
-  $('favCnt').textContent = favs.length;
-  $('favFab').style.display = favs.length ? 'flex' : 'none';
-  const list = $('favList');
-  if (!favs.length) { list.innerHTML = '<div class="fav-empty">还没有收藏哦～<br>生成标题后点 ♥ 即可收藏</div>'; return; }
-  list.innerHTML = favs.map((f, idx) =>
-    '<div class="fav-item"><div class="ft"><span class="ftag">'+f.tag+'</span>'+f.text+'</div>' +
-    '<button onclick="copyText(\''+f.text.replace(/'/g,"\\'")+'\')">复制</button>' +
-    '<button class="del" data-i="'+idx+'">删除</button></div>'
-  ).join('');
-  list.querySelectorAll('.del').forEach(b => b.addEventListener('click', () => {
-    let f = getFavorites(); f.splice(parseInt(b.dataset.i), 1); saveFavorites(f); updateFavUI();
-  }));
-}
-
-$('favFab').addEventListener('click', () => { $('sheet').classList.add('open'); $('sheetMask').classList.add('open'); });
-$('sheetMask').addEventListener('click', () => { $('sheet').classList.remove('open'); $('sheetMask').classList.remove('open'); });
-$('favCopyAll').addEventListener('click', () => { const favs = getFavorites(); if (!favs.length) return; copyText(favs.map(f => f.text).join('\n')); });
-$('favClear').addEventListener('click', () => { if (!getFavorites().length) return; if (confirm('确定清空全部收藏？')) { saveFavorites([]); updateFavUI(); toast('已清空'); } });
-
-function getStyles(){ return [...chips].filter(c => c.classList.contains('active')).map(c => c.dataset.style); }
-function shuffle(arr){ for (let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
-
-function generate() {
-  const kw = $('kw').value.trim();
-  const styles = getStyles();
-  if (!kw) { $('kw').focus(); $('kw').style.borderColor='var(--accent)'; setTimeout(()=>$('kw').style.borderColor='',1200); return; }
-  if (!styles.length) { alert('至少选一个风格'); return; }
-
-  let pool = [];
-  styles.forEach(s => formulas[s].forEach(f => {
-    let text = f.replace(/\{kw\}/g, kw);
-    if (Math.random() < 0.35) text += pick(suffixes);
-    pool.push({ text, tag: s });
-  }));
-  const final = shuffle(pool.slice());
-  let out = [];
-  for (let i=0;i<maxCount;i++) out.push(final[i % final.length]);
-  out = shuffle(out);
-
-  const grid = $('grid');
-  grid.innerHTML = '';
-  out.forEach((item, idx) => {
-    const emoji = emojis[Math.floor(Math.random()*emojis.length)];
-    const card = document.createElement('div');
-    card.className = 'title-card';
-    card.style.animationDelay = (idx * 0.025) + 's';
-    const isFav = isFavorite(item.text);
-    card.innerHTML =
-      '<div class="t">'+emoji+' '+item.text+'</div>' +
-      '<span class="tag">'+item.tag+'</span>' +
-      '<button class="icon-btn fav-btn '+(isFav?'fav-on':'')+'" title="收藏">♥</button>' +
-      '<button class="icon-btn copy-btn" title="复制">⧉</button>';
-    card.querySelector('.copy-btn').addEventListener('click', () => copyText(emoji+' '+item.text));
-    card.querySelector('.fav-btn').addEventListener('click', function(){ this.classList.toggle('fav-on', toggleFavorite(item.text, item.tag)); });
-    grid.appendChild(card);
-  });
-
-  $('count').textContent = '共 ' + out.length + ' 条';
-  $('reshuffleBtn').disabled = false;
-  $('copyAllBtn').style.display = 'inline-block';
-}
-
-function copyText(text) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => toast('已复制')).catch(() => fallbackCopy(text));
-  } else { fallbackCopy(text); }
-}
-function fallbackCopy(text) {
-  const ta = document.createElement('textarea');
-  ta.value = text; ta.style.position='fixed'; ta.style.top='-9999px'; ta.style.opacity='0';
-  document.body.appendChild(ta); ta.focus(); ta.select();
-  try { document.execCommand('copy'); toast('已复制'); } catch(e){ toast('请长按手动复制'); }
-  document.body.removeChild(ta);
-}
-function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1200); }
-
-$('genBtn').addEventListener('click', generate);
-$('reshuffleBtn').addEventListener('click', generate);
-$('kw').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
-$('copyAllBtn').addEventListener('click', function(){
-  const items = document.querySelectorAll('.title-card .t');
-  if (!items.length) return;
-  copyText(Array.from(items).map(el => el.textContent).join('\n'));
-  this.textContent='✅ 已复制全部'; setTimeout(()=>{ this.textContent='复制全部'; }, 1500);
-});
-
-(function(){
-  const p = new URLSearchParams(location.search);
-  const kw = p.get('kw');
-  if (kw) { $('kw').value = kw; generate(); }
-})();
-
-const copyLinkBtn = document.getElementById('copyLinkBtn');
-if (copyLinkBtn) {
-  document.getElementById('linkBox').textContent = location.href;
-  copyLinkBtn.addEventListener('click', function(){
-    copyText(location.href);
-    this.textContent = '✓ 已复制';
-    const b = this;
-    setTimeout(function(){ b.textContent = '复制链接'; }, 1300);
-  });
-}
-
-updateFavUI();
-</script>
-<script>
-(function(){try{
-var K='bkp_stats',p=location.pathname.split('/').pop()||'index.html';
-function load(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return{}}}
-function inc(n){var s=load();s[p]=s[p]||{};s[p][n]=(s[p][n]||0)+1;s[p].last=Date.now();try{localStorage.setItem(K,JSON.stringify(s))}catch(e){}}
-inc('pv');
-document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('button'):null;if(!b)return;
-if(b.id==='genBtn')inc('gen');else if(b.id==='copyAllBtn')inc('copyAll');else if(b.id==='reshuffleBtn')inc('reshuffle');});
-}catch(e){}})();
-</script>
+</footer>
 </body>
 </html>
